@@ -1,0 +1,9 @@
+// /models/homeSchema.js
+const mongoose = require('mongoose');
+
+const homeSchema = new mongoose.Schema({
+  heading: String,
+  text: String
+});
+
+module.exports = mongoose.model('HomeContent', homeSchema);

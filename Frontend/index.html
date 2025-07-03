@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heiko Ries Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!--overlay-->
+
+  <div class="overlay"></div>
+
+  <!-- Header section with navigation links to different sections of the portfolio page -->
+
+  <header id="navdiv">
+    <nav class="nav-inner">
+      <div class="nav-center">
+      <a class="topmenu" href="#" onclick="showSection('home')">Home</a>
+      <a class="topmenu" href="#" onclick="showSection('about-me')">About-Me</a>
+      <a class="topmenu" href="#" onclick="showSection('projects')">Projects</a>
+      <a class="topmenu" href="#" onclick="showSection('reviews')">Reviews</a>
+      <a class="topmenu" href="#" onclick="showSection('contact')">Contact</a>
+      </div>
+      <div class="nav-login">
+      <a class="topmenu" href="#" onclick="showLoginSection('Login')">Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content of the portfolio page with profile section, about me, skills, projects, and contact form -->
+
+  <main>
+
+      <!--Home -->
+
+    <section id="home" class="home-section" style="display: block;">
+      <div class="home-content">
+      <h1></h1>
+      <p>
+      </p>
+      <a></a>
+      </div>
+    </section>
+
+    <!--About-me -->
+
+    <section id="about-me" style="display: none;">
+      <div class="about-me">
+      <img src="html_finalprojimages/profil.JPEG" alt="Profilbild Heiko Ries" class="profile_image">
+        <div class="about-me-text">
+        <h1 id="about-heading"></h1>
+        <p id="about-text"></p> 
+        </div>
+      </div>
+
+    <!--About-me - Skills -->
+    
+      <div id="all_skills"> 
+      </div>
+    </section>
+
+    <!--Projects section -->
+
+    <section id="projects" style="display: none;">  
+      <div class="projects-container">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <ul>
+            <li>...</li>
+          </ul>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- Reviews -->
+
+    <section id="reviews" style="display: none;">
+
+      <div class="all_reviews" id="all_reviews">
+        <div class="review">
+          <p>
+          There may be future reviews here!
+          </p>
+        </div>
+        </div>
+        
+        <div id="review_input_form">
+        <form class="review_input_form" >
+        <fieldset>
+          <legend>Review</legend>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email">
+
+          <label for="new_review">Message:</label>
+          <textarea id="new_review" name="review" rows="4"></textarea>
+
+          <button type="submit">Send</button>
+        </fieldset>
+        </form>
+        </div>
+
+   
+    </section>
+
+    <!-- Contact section with a form to send messages -->
+
+    <section id="contact" style="display: none;">
+
+      <div class="contact_inner_wrapper">
+        <div class="contact_cards_wrapper">   
+          <div class="contact_cards">
+            <div class="contact_icon">
+            <img src="html_finalprojimages/address_icon.png"  alt="address">
+            </div>
+            <h1>Address:</h1>
+            <p>Contactstreet 12<br>
+              12345 Contact    <br>
+              Deutschland
+            </p>
+          </div>
+
+          <div class="contact_cards">
+            <div class="contact_icon">
+            <img src="html_finalprojimages/phone_icon.png"   alt="phone">
+            </div>
+            <h1>Phone:</h1>
+            <p>+4912355321
+            </p>
+          </div>
+
+          <div class="contact_cards">
+            <div class="contact_icon">
+            <img src="html_finalprojimages/mail_icon.png"   alt="mail">
+            </div>
+            <h1>Email:</h1>
+            <p>portfolio@mail.de
+            </p>
+          </div>
+        </div>
+        
+
+        
+          <form class="contact_input_form" >
+          <fieldset class="contact_input_fieldset">
+            <legend>Message</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name_m" name="name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email_m" name="email">
+
+            <label for="new_message">Message:</label>
+            <textarea id="new_message" name="message" rows="4"></textarea>
+
+            <button type="submit">Send</button>
+          </fieldset>
+          </form>
+      </div>
+
+    </section>
+
+    <!-- Login section -->
+    <section id="loginSection" style="display: none;">
+    <div class="login-input">
+      <form id="adminLoginForm">
+      <input type="text" placeholder="Username" id="adminUser" />
+      <input type="password" placeholder="Password" id="adminPass" />
+      <button id ="login-btn" type="submit">Login</button>
+      </form>
+    </div>
+    </section>
+
+    <!--Sidebar-->
+   
+    <section id="sidebarContent">
+        <aside class="sidebar">
+          <hr class="sidebar-separator">
+          <a href="https://x.com" target="_blank">
+          <img src="html_finalprojimages/x_icon.png" class="icon_sidebar" alt="plain_icon"/></a> <br>
+          <a href="https://youtube.com" target="_blank">
+          <img src="html_finalprojimages/youtube_icon.png" class="icon_sidebar" alt="plain_icon"/></a><br>
+          <a href="https://instagram.com" target="_blank">
+          <img src="html_finalprojimages/instagram_icon.png" class="icon_sidebar" alt="plain_icon"/></a><br>
+          <a href="https://facebook.com" target="_blank">
+          <img src="html_finalprojimages/facebook_icon.png" class="icon_sidebar" alt="plain_icon"/></a>
+        </aside>
+    </section>
+  
+  </main>
+
+    <div class="popup" id="popup-review" class="flex_center">
+      <img class="popup_icon"src="html_finalprojimages/checkmark_icon.jpg"/>
+      <h3>Thanks for leaving a review!</h3>
+      <button onclick="showPopupReview(false)">Ok</button>
+    </div>
+
+    <div class="popup" id="popup-message" class="flex_center">
+      <img class="popup_icon"src="html_finalprojimages/checkmark_icon.jpg"/>
+      <h3>Message sent!</h3>
+      <button onclick="showPopupMessage(false)">Ok</button>
+    </div>
+
+    <div class="popup" id="popup-error" class="flex_center">
+      <img class="popup_icon"src="html_finalprojimages/false_icon.jpg"/>
+      <h3>Enter valid input!</h3>
+      <button onclick="showPopupError(false)">Ok</button>
+    </div>
+
+  <!-- Footer section with a button to scroll back to the top of the page -->
+
+  <footer>
+    <p id="copyright">&copy; 2025 Heiko Ries. All rights reserved.</p>
+  </footer>
+</body>
+<!-- Link to the external JavaScript file for functionality -->
+<script src="./script.js"></script>
+
+</html>

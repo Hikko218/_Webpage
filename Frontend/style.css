@@ -1,0 +1,760 @@
+
+/* Global Styles */
+
+html, body {
+  min-height: 100%; 
+  padding:0;
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url("html_finalprojimages/background_img.jpg");
+  background-size: cover;                       /* Scale background image to cover entire area */
+  background-position: center;                  /* Center the background image */
+  background-repeat: no-repeat;                 /* Prevent background repetition */ 
+  background-attachment: scroll;                   
+}
+
+body {
+  position: relative;
+  display: flex;                                /* Flexbox for layout */
+  flex-direction: column; 
+  z-index: 0;                      
+}
+
+main {
+    margin-top: 50px;                           /*Content after Header*/
+    flex: 1;                                    /* Allow main to grow and fill available space */
+    min-height: 1000px;                         /* Ensure main has a minimum height */  
+}
+
+.overlay {
+  position: fixed;                              /* Fixed position to cover the entire viewport */
+  top: 0;                                       /* Start from the top */   
+  left: 0;                                      /* Start from the left */
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);             /* Semi-transparent black overlay */
+  z-index: 0;                                   /* Ensure it is behind other content */
+}
+
+/* Sidebar*/
+
+.sidebar {
+    position: fixed;
+    top: 50px;                                  /* Below header */                                    
+    left: -20px;                                /* Slightly outside left */             
+    width: 100px;                                           
+    height: calc(100% - 50px);                  /* Full height minus header */                                                            
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.sidebar-separator {
+    width: 3px;
+    height: 200px; 
+    background-color: aliceblue;
+    border: none;
+    border-radius: 10%;
+    margin-top: 70px;
+    margin-bottom: 60px;  
+}
+
+.icon_sidebar {
+    max-height: 30px;
+    object-fit: cover;
+    border-radius: 50%;   
+}
+
+/* Navigation Header= */
+
+#navdiv {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 10px 30px;
+  position: relative;
+}
+
+.nav-center {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-login {
+  position: absolute;
+  right: 30px;
+}
+
+.topmenu {
+  font-size: 20px;
+  color: rgb(7, 131, 240);
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+
+.topmenu {
+  font-size: 20px;
+  color: rgb(7, 131, 240);
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;                                /* Smooth hover */
+}
+
+.topmenu:hover {
+  text-decoration: none;
+  color: aliceblue;
+  cursor: default;
+}
+
+/* Home Section */
+
+.home-section {
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  color: white;
+  padding: 0 20px;
+  margin-top: 300px;
+}
+
+.home-content h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: rgb(7, 131, 240);
+}
+
+.home-content p {
+  font-size: 1.4rem;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+}
+
+.home-content .btn {
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgb(7, 131, 240);
+  box-shadow: 0px 0px 20px rgb(7, 131, 240);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-content .btn:hover {
+  background-color: aliceblue;
+}
+
+/* About-me Section */
+
+.about-me {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color:  rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  margin-right: auto;
+  color: aliceblue;
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  max-width:1000px;
+  z-index: 1;
+}
+
+.about-me-text {
+  margin-left: 1rem;
+}
+
+.about-me-text h1{
+  color:rgb(7, 131, 240);
+}
+
+#about-me {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
+  margin-left: 60px;
+}
+
+.profile_image {
+  max-width: 200px;
+  border-radius: 20px;
+}
+
+/* Skills Section  */
+
+#all_skills {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem auto; 
+  background-color:  rgba(0, 0, 0, 0.5);
+  max-width:1000px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  min-height: 200px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+#skills_header {
+  color:rgb(7, 131, 240);
+  font-size: 30px;
+  text-align: center;
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.skill {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: aliceblue;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  flex: 1 1 180px;
+  min-width: 120px;
+  max-width: 180px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.skill img {
+  height: 35px;
+  width: 35px; 
+  object-fit: contain; 
+  margin-bottom: 0.5rem;
+}
+
+.skill h3 {
+  color:rgb(7, 131, 240);
+}
+
+/* Projects */
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+  z-index: 1;
+}
+
+.project-card {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgb(7, 131, 240);
+  z-index: 1;
+}
+
+.project-card h3 {
+  font-size: 1.5rem;
+  color: rgb(7, 131, 240);
+}
+
+.project-card ul {
+  list-style-position: inside;                                /* <-- important for central points */
+  padding: 0;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+/* Reviews */
+
+#reviews {
+  display: flex;
+  justify-content: center;
+}
+
+.all_reviews {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem 1rem 1rem 1rem;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.review {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: aliceblue;
+  font-style: italic;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  width: 250px;
+}
+
+.review h3 {
+  color: rgb(7, 131, 240);
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0;
+}
+
+.review p {
+  color: aliceblue;;
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', serif;
+}
+
+/*Review input */
+
+#review_input_form {
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+  margin-top: 15rem;
+  z-index: 1;
+  
+}
+.review_input_form legend {
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(7, 131, 240)
+}
+
+.review_input_form fieldset {
+  display:flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 500px;
+  max-height: 600px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  border-radius: 10px;
+  border:none;
+  color:aliceblue;
+}
+
+.review_input_form input {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 15px;
+  max-height: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+}
+
+.review_input_form textarea {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 100px;
+  max-height: 200px;
+  font-size: 14px;
+  resize: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+}
+
+/*Contact Section */
+
+#contact {
+  position:relative;
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact_inner_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+.contact_cards_wrapper {
+  flex: 1 1 400px;
+  min-width: 300px; 
+  margin-top: 50px;
+  max-width: 400px;
+}
+
+.contact_cards_wrapper h1 {
+  margin-bottom: 0.3rem;                  /* smaller gap to headline */
+}
+
+.contact_cards_wrapper p {
+  margin-top: 0.1rem;                     /* smaller gap to icon/text */
+  margin-bottom: 0.8rem;                  /* gap to next Block */
+}
+
+.contact_cards_wrapper i {
+  margin-right: 0.5rem;                   /* gap between Icon and text */
+  vertical-align: middle;                 /* icon position central to text */
+}
+
+.contact_cards {
+  display:flex;
+  max-width: 400px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color:aliceblue;
+}
+
+.contact_cards h1 {
+  color:rgb(7, 131, 240);
+}
+
+.contact_input_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;                  
+  justify-content: center;
+  flex: 1 1 400px;
+  max-width: 450px;
+  min-width: 320px;
+  margin-top: 70px; 
+}
+
+.contact_input_form legend {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(7, 131, 240)
+}
+
+.contact_icon img{
+  max-height: 30px;
+  object-fit: cover;
+  border-radius: 50%;  
+}
+
+/*Contact message section */
+
+.contact_input_form input {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 15px;
+  max-height: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+}
+
+.contact_input_form textarea {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 100px;
+  max-height: 200px;
+  font-size: 14px;
+  resize: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+}
+
+.contact_input_form fieldset {
+  display:flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 500px;
+  max-height: 600px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 20px rgb(7, 131, 240);
+  border-radius: 10px;
+  border:none;
+  color:aliceblue;
+}
+
+/*Login Section */
+.login-input {
+  position: fixed;
+  top: 60px; /* Direkt unter dem Header (der Header ist 50px hoch + etwas Abstand) */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Überlagert andere Inhalte */
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgb(7, 131, 240);
+}
+
+
+
+#adminLoginForm input { 
+  min-width: 100px;
+  max-width: 200px;
+  min-height: 15px;
+  max-height: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+}
+
+/* Buttons */
+
+#login-btn {
+  color: aliceblue;  
+  background-color: rgb(2, 144, 2);
+  box-shadow: 0px 0px 10px black;
+  padding: 0.1rem 1rem;
+}
+
+button {
+  margin-top: 10px;
+  padding: 0.3rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border:none;
+  color: rgb(7, 131, 240);
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+}
+
+#login-btn:hover{
+  font-weight: bold;
+  cursor: default;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+}
+button:hover{
+  background-color: aliceblue;
+}
+
+/* Popup */
+.popup {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  visibility: hidden;
+  box-shadow: 0 0 40px blue;
+  padding: 2rem;
+  z-index: 1000;
+  color:aliceblue;
+}
+
+.popup_icon {
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* footer */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height:35px;
+    color:aliceblue;
+    margin-top: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    }
+
+#copyright {
+    font-size: 14px;
+    padding: 0px;
+    display: flex;
+    align-items: center;      
+    justify-content: center;
+    font-weight: bold;    
+}
+
+/*  Responsive Styles */
+
+/* Stack header nav items and center them on medium screens */
+
+@media (max-width: 1024px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Adjust font size and layout for tablets */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  #navdiv {
+    height: 100%;
+    max-height: 70px;
+  }
+
+  .about-me {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .about-me img {
+    width: 200px;
+    margin-bottom: 1rem;
+  }
+
+  #all_skills {
+    flex-direction: column;
+    align-items: center;
+    min-width: unset;
+  }
+
+  .skill {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .projects-container {
+    gap: 2rem;
+  }
+
+  .contact_inner_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+  }
+
+
+  .contact_cards_wrapper,
+  .contact_input_form {
+    align-items: center;                       /* Center content */
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+   .contact_cards_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;                      /* Center contact info horizontally */
+    text-align: center;                       /* Center text in contact info */                                
+  }
+
+  .contact_cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;                       /* Center each card's content */
+    justify-content: center;
+    max-width: 500px;                          /* same width as message form */
+    margin: 0 auto;
+  }
+
+  .review-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .review-input-form,
+  .review-list {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+/* Mobile adjustments: smaller text and buttons */
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  p,
+  li {
+    font-size: 0.9rem;
+  }
+
+  .btn,
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Fullscreen background image using pseudo-element to avoid iOS background issues */
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("html_finalprojimages/background_img.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat;                                         
+  background-position: center;                                         
+  z-index: -1;                                                          
+}
+
