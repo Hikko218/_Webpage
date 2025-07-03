@@ -553,6 +553,20 @@ main {
   padding: 0.1rem 1rem;
 }
 
+.logout-btn {
+  color: aliceblue;  
+  background-color: rgb(175, 3, 3);
+  box-shadow: 0px 0px 10px black;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0px 0px 10px black;
+}
+
 button {
   margin-top: 10px;
   padding: 0.3rem 1.2rem;
