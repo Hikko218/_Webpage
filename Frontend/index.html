@@ -19,14 +19,14 @@
   <header id="navdiv">
     <nav class="nav-inner">
       <div class="nav-center">
-      <a class="topmenu" href="#" onclick="showSection('home')">Home</a>
-      <a class="topmenu" href="#" onclick="showSection('about-me')">About-Me</a>
-      <a class="topmenu" href="#" onclick="showSection('projects')">Projects</a>
-      <a class="topmenu" href="#" onclick="showSection('reviews')">Reviews</a>
-      <a class="topmenu" href="#" onclick="showSection('contact')">Contact</a>
+      <a id = "homeBtn" class="topmenu" href="#" >Home</a>
+      <a id = "aboutBtn" class="topmenu" href="#" >About-Me</a>
+      <a id = "projectsBtn" class="topmenu" href="#" >Projects</a>
+      <a id = "reviewsBtn" class="topmenu" href="#" >Reviews</a>
+      <a id = "contactBtn" class="topmenu" href="#" >Contact</a>
       </div>
       <div class="nav-login">
-      <a id = "adminLoginBtn" class="topmenu" href="#" onclick="showLoginSection('Login')">Login</a>
+      <a id = "adminLoginBtn" class="topmenu" href="#" >Login</a>
       </div>
     </nav>
   </header>
@@ -200,19 +200,19 @@
     <div class="popup" id="popup-review" class="flex_center">
       <img class="popup_icon"src="html_finalprojimages/checkmark_icon.jpg"/>
       <h3>Thanks for leaving a review!</h3>
-      <button onclick="showPopupReview(false)">Ok</button>
+      <button id="popup-review-btn">Ok</button>
     </div>
 
     <div class="popup" id="popup-message" class="flex_center">
       <img class="popup_icon"src="html_finalprojimages/checkmark_icon.jpg"/>
       <h3>Message sent!</h3>
-      <button onclick="showPopupMessage(false)">Ok</button>
+      <button id="popup-message-btn">Ok</button>
     </div>
 
     <div class="popup" id="popup-error" class="flex_center">
       <img class="popup_icon"src="html_finalprojimages/false_icon.jpg"/>
       <h3>Enter valid input!</h3>
-      <button onclick="showPopupError(false)">Ok</button>
+      <button id="popup-error-btn">Ok</button>
     </div>
 
   <!-- Footer section with a button to scroll back to the top of the page -->
@@ -222,6 +222,9 @@
   </footer>
 </body>
 <!-- Link to the external JavaScript file for functionality -->
-<script src="./script.js"></script>
+<script type="module" src="./scripts/sectionManagment.js"></script>
+<script type="module" src="./scripts/auth.js"></script>
+<script type="module" src="./scripts/popup.js"></script>
+<script type="module" src="./scripts/formHandler.js"></script>
 
 </html>
