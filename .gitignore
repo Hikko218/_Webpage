@@ -44,6 +44,7 @@ Frontend/node_modules/
 jspm_packages/
 practice/
 Todo.txt
+Working state.txt
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

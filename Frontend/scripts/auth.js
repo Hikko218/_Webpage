@@ -29,6 +29,8 @@ document
         logoutAdmin();
       };
       showSection("home");
+      // Show the admin edit section on successful login
+      document.body.classList.add('admin');
 
       usernameInput.value = ""; // Clear input fields
       passwordInput.value = "";
@@ -51,8 +53,11 @@ async function logoutAdmin() {
     adminLogout.className = "topmenu"; // Change button ID back to login
     adminLogout.onclick = () => {
       showLoginSection("Login");
-    };
-    showSection("Home");
+      };
+    // Hide the admin edit section on logout
+    document.body.classList.remove('admin');
+    // Redirect to home section
+    showSection("home");
   } else {
     alert("Logout failed");
   }

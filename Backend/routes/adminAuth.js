@@ -12,7 +12,7 @@ router.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   if (username === ADMIN.username && password === ADMIN.password) {
-    req.session.admin = { username }; 
+    req.session.admin = { username };
     return res.json({ message: 'Logged in with session' });
   }
 

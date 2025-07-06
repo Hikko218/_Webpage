@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 
 const homeSchema = new mongoose.Schema({
+   _id: String,
   heading: String,
   text: String
 });

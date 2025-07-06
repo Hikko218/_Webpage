@@ -19,8 +19,8 @@ router.get('/home', async (req, res) => {
   res.json(content);
 });
 
-router.put('/home/:id', isAdmin, async (req, res) => {
-  const updated = await homeContent.findByIdAndUpdate(req.params.id, req.body, { new: true });
+router.put('/home', isAdmin, async (req, res) => {
+  const updated = await homeContent.findByIdAndUpdate('home', req.body, { new: true });
   res.json(updated);
 });
 
@@ -91,9 +91,16 @@ router.get('/reviews', async (req, res) => {
   res.json(content);
 });
 
-router.put('/reviews/:id', isAdmin, async (req, res) => {
-  const updated = await reviewContent.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);  
+router.delete('/reviews/:id', isAdmin, async (req, res) => {
+  try {
+    const deletedReview = await reviewContent.findByIdAndDelete(req.params.id);
+    if (!deletedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+    res.json({ message: 'Review deleted successfully', review: deletedReview });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting review', error: err.message });
+  }
 });
 
 router.post('/reviews', async (req, res) => {

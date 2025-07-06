@@ -157,6 +157,32 @@ main {
   background-color: aliceblue;
 }
 
+.home-admin-edit, #home-edit-form {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Neu */
+  align-items: center;     /* Zentriert horizontal */
+  justify-content: center;
+  margin-top: 2rem;        /* Weniger Abstand als vorher */
+  gap: 0.2rem;               /* Abstand zwischen Feldern */
+  z-index: 1;
+}
+
+.home-admin-edit textarea {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 15px;
+  max-height: 200px;
+  font-size: 14px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color:aliceblue;
+  resize: none;
+}
+
 /* About-me Section */
 
 .about-me {
@@ -307,6 +333,9 @@ main {
 }
 
 .review {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
   background-color: rgba(0, 0, 0, 0.5);
   color: aliceblue;
   font-style: italic;
@@ -329,6 +358,21 @@ main {
   font-family: 'Times New Roman', serif;
 }
 
+.review button {
+  align-self: center;
+  margin-top: 0.2rem;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.review button:hover {
+  background-color: #ff0000;
+  box-shadow: 0px 0px 10px rgb(0, 1, 2);
+}
+
 /*Review input */
 
 #review_input_form {
@@ -338,7 +382,6 @@ main {
   width: 100%;
   margin-top: 15rem;
   z-index: 1;
-  
 }
 .review_input_form legend {
   font-size: 25px;
@@ -635,6 +678,15 @@ footer {
     justify-content: center;
     font-weight: bold;    
 }
+
+/* Admin Styles */
+.delete-review-btn { display:none; } 
+.home-admin-edit   { display:none; } 
+
+body.admin .delete-review-btn, body.admin .home-admin-edit { 
+  display:inline-block; 
+}
+
 
 /*  Responsive Styles */
 

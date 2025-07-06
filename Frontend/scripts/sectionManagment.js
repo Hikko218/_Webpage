@@ -61,9 +61,12 @@ async function showSection(sectionId) {
         reviewDiv.innerHTML = `
           <h3>${review.name}</h3>
           <p>${review.text}</p>
-          <small>${new Date(review.date).toLocaleDateString()}</small>
+          <small>${new Date(review.date).toLocaleDateString()}</small><br>
+          <button class="delete-review-btn" data-review-id="${review._id}">Delete</button>
         `;
+        
         reviewsContainer.appendChild(reviewDiv);
+        
       });
     }
     catch (err) {

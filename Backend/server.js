@@ -19,7 +19,12 @@ app.use(session({
   secret: process.env.SESSION_SECRET, // other secret key for session management
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 1800000 } // 30minutes
+  cookie: {
+  maxAge: 1800000,
+  httpOnly: true,
+  secure: false,      // 'true' if using HTTPS, 'false' for development
+  sameSite: 'lax'   // 'none' allows cross-site cookies, necessary for CORS
+}
 }));
 
 // MongoDB connection
