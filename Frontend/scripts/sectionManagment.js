@@ -62,7 +62,7 @@ async function showSection(sectionId) {
           <h3>${review.name}</h3>
           <p>${review.text}</p>
           <small>${new Date(review.date).toLocaleDateString()}</small><br>
-          <button class="delete-review-btn" data-review-id="${review._id}">Delete</button>
+          <button class="delete-review-btn" data-review-id="${review._id}">🗑️ Delete</button>
         `;
         
         reviewsContainer.appendChild(reviewDiv);
@@ -89,6 +89,7 @@ async function showSection(sectionId) {
       projects.forEach(project => {
         const projectDiv = document.createElement('div');
         projectDiv.className = "project-card";
+        projectDiv.dataset.id = project._id;
         projectDiv.innerHTML = `
           <h3>${project.title}</h3>
           <ul>
@@ -96,6 +97,8 @@ async function showSection(sectionId) {
             .map(feature => `<li>${feature}</li>`)
             .join('')}
           </ul>
+          <button class="edit-project-btn">✏️ Edit</button>
+          <button class="delete-project-btn">🗑️ Delete</button>
         `;
         projectsContainer.appendChild(projectDiv);
       });

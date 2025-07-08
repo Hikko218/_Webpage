@@ -72,6 +72,19 @@ router.put('/projects/:id', isAdmin, async (req, res) => {
   res.json(updated);
 });
 
+// Delete a project
+router.delete('/projects/:id', isAdmin, async (req, res) => {
+  try {
+    const deletedProject = await projectContent.findByIdAndDelete(req.params.id);
+    if (!deletedProject) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+    res.json({ message: 'Project deleted successfully', project: deletedProject });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting project', error: err.message });
+  }
+});
+
 router.post('/projects', isAdmin, async (req, res) => {
   try {
     const { title, features } = req.body;

@@ -358,21 +358,9 @@ main {
   font-family: 'Times New Roman', serif;
 }
 
-.review button {
+.delete-review-btn {
   align-self: center;
-  margin-top: 0.2rem;
-  background-color: #ff0000;
-  color: white;
-  border: none;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
 }
-.review button:hover {
-  background-color: #ff0000;
-  box-shadow: 0px 0px 10px rgb(0, 1, 2);
-}
-
 /*Review input */
 
 #review_input_form {
@@ -680,10 +668,13 @@ footer {
 }
 
 /* Admin Styles */
-.delete-review-btn { display:none; } 
-.home-admin-edit   { display:none; } 
+.delete-review-btn  {display:none;} 
+.home-admin-edit    {display:none;} 
+.edit-project-btn   {display:none;}
+.delete-project-btn {display:none;}
 
-body.admin .delete-review-btn, body.admin .home-admin-edit { 
+body.admin .delete-review-btn, body.admin .home-admin-edit, 
+body.admin .edit-project-btn, body.admin .delete-project-btn { 
   display:inline-block; 
 }
 

@@ -70,3 +70,60 @@ document.addEventListener('click', function (e) {
     deleteReview(e);
   }
 });
+
+// Projects edit and delete functionality
+document.addEventListener('click', async (e) => {
+  
+  if (e.target.classList.contains('delete-project-btn')) {
+
+    const card = e.target.closest('.project-card');
+    const id = card?.dataset.id;
+
+    console.log("TARGET:", e.target);
+    console.log("CARD:", card);
+    console.log("ID:", id);
+
+    const confirmed = confirm("Projekt wirklich löschen?");
+    if (!confirmed) return;
+
+    const res = await fetch(`http://localhost:3000/api/content/projects/${id}`, { 
+      method: 'DELETE', 
+      credentials: 'include',
+    });
+    if (res.ok) {
+      card.remove(); 
+    }
+  }
+
+  if (e.target.classList.contains('edit-project-btn')) {
+    const card = e.target.closest('.project-card');
+    const id = card?.dataset.id;
+
+  const newTitle = prompt("New Titel:");
+  if (!newTitle) return;
+
+  const newFeaturesRaw = prompt("New Features (comma separated):");
+  if (newFeaturesRaw === null) return; 
+
+  const newFeatures = newFeaturesRaw.split(',').map(f => f.trim()).filter(Boolean);
+
+  const res = await fetch(`http://localhost:3000/api/content/projects/${id}`, {
+    method: 'PUT',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: newTitle,
+      features: newFeatures
+    })
+  });
+
+  if (res.ok) {
+    // Change the title of the project card
+    card.querySelector('h3').textContent = newTitle;
+
+    // Change the features list
+    const ul = card.querySelector('ul');
+    ul.innerHTML = newFeatures.map(f => `<li>${f}</li>`).join('');
+  }
+}
+});
