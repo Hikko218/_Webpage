@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.host": "localhost",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.ignoreFiles": [
+  ".vscode/**",
+  "**/../Backend/public/uploads/**"
+]
+}

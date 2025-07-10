@@ -27,15 +27,25 @@ async function showSection(sectionId) {
 
       // Skills rendern
       const skillsContainer = document.getElementById('all_skills');
-      skillsContainer.innerHTML = '<div id="skills_header"><h2>Skills</h2></div>';
+      skillsContainer.innerHTML = `
+        <div id="skills_header">
+        <h2>Skills</h2>
+        </div>
+        `; 
+      
 
       about.skills.forEach(skill => {
         const div = document.createElement('div');
         div.className = 'skill';
+        div.dataset.id = skill._id; 
         div.innerHTML = `
           <img src="http://localhost:3000${skill.icon}" alt="${skill.title}">
           <h3>${skill.title}</h3>
           <p>${skill.description}</p>
+          <div class="skills-button-group">
+          <button type="button" class="edit-skills-btn">✏️</button>
+          <button type="button" class="delete-skills-btn">🗑️</button>
+          </div>
         `;
         skillsContainer.appendChild(div);
       });
@@ -62,7 +72,7 @@ async function showSection(sectionId) {
           <h3>${review.name}</h3>
           <p>${review.text}</p>
           <small>${new Date(review.date).toLocaleDateString()}</small><br>
-          <button class="delete-review-btn" data-review-id="${review._id}">Delete</button>
+          <button class="delete-review-btn" data-review-id="${review._id}">🗑️ Delete</button>
         `;
         
         reviewsContainer.appendChild(reviewDiv);
@@ -89,6 +99,7 @@ async function showSection(sectionId) {
       projects.forEach(project => {
         const projectDiv = document.createElement('div');
         projectDiv.className = "project-card";
+        projectDiv.dataset.id = project._id;
         projectDiv.innerHTML = `
           <h3>${project.title}</h3>
           <ul>
@@ -96,6 +107,10 @@ async function showSection(sectionId) {
             .map(feature => `<li>${feature}</li>`)
             .join('')}
           </ul>
+          <div class="project-btn-group">
+          <button class="edit-project-btn">✏️ Edit</button>
+          <button class="delete-project-btn">🗑️ Delete</button>
+          </div>
         `;
         projectsContainer.appendChild(projectDiv);
       });

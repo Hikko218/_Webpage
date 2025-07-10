@@ -40,10 +40,11 @@ build/Release
 
 # Dependency directories
 Backend/node_modules/
+Practice/
 Frontend/node_modules/
 jspm_packages/
 practice/
-Todo.txt
+ToDo.txt
 Working state.txt
 
 # Snowpack dependency directory (https://snowpack.dev/)
