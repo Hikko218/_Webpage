@@ -69,24 +69,39 @@
         <h1 id="about-heading"></h1>
         <p id="about-text"></p> 
         </div>
+        <div class="about-button-group">
+          <button type="button" class="edit-about-btn">✏️</button>
+        </div>
       </div>
 
     <!--About-me - Skills -->
     
       <div id="all_skills"> 
       </div>
+      <!-- Input form for adding new skills icon -->
+
+      <div id="upload-container">
+      <form id="skillUploadForm">
+      <label for="skillFile" class="file-label">Datei auswählen</label>
+      <input type="file" id="skillFile" name="icon" style="display: none;">
+
+      <input type="text" id="newSkillTitle" placeholder="Skill Title" name="title" required>
+      <textarea id="newSkillDescription" placeholder="Skill Description" name="description" required></textarea>
+      <button id ="skill-add-btn" type="button">Upload</button>
+      </form>
+      </div>
+
+
     </section>
 
     <!--Projects section -->
 
-    <section id="projects" style="display: none;">  
+    <section id="projects" style="display: none;">
+      <div class="projects-wrapper">
       <div class="projects-container">
-        <div class="project-card">
-          <h3>Portfolio Website</h3>
-          <ul>
-            <li>...</li>
-          </ul>
-        </div>
+        <!-- Projects will be dynamically inserted here -->
+      </div>
+      <button class="add-project-btn">Add Project</button>
       </div>
 
 
@@ -241,4 +256,5 @@
 <script type="module" src="./scripts/popup.js"></script>
 <script type="module" src="./scripts/formHandler.js"></script>
 <script type="module" src="./scripts/adminEdit.js"></script>
+
 </html>

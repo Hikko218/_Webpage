@@ -27,15 +27,25 @@ async function showSection(sectionId) {
 
       // Skills rendern
       const skillsContainer = document.getElementById('all_skills');
-      skillsContainer.innerHTML = '<div id="skills_header"><h2>Skills</h2></div>';
+      skillsContainer.innerHTML = `
+        <div id="skills_header">
+        <h2>Skills</h2>
+        </div>
+        `; 
+      
 
       about.skills.forEach(skill => {
         const div = document.createElement('div');
         div.className = 'skill';
+        div.dataset.id = skill._id; 
         div.innerHTML = `
           <img src="http://localhost:3000${skill.icon}" alt="${skill.title}">
           <h3>${skill.title}</h3>
           <p>${skill.description}</p>
+          <div class="skills-button-group">
+          <button type="button" class="edit-skills-btn">✏️</button>
+          <button type="button" class="delete-skills-btn">🗑️</button>
+          </div>
         `;
         skillsContainer.appendChild(div);
       });
@@ -97,8 +107,10 @@ async function showSection(sectionId) {
             .map(feature => `<li>${feature}</li>`)
             .join('')}
           </ul>
+          <div class="project-btn-group">
           <button class="edit-project-btn">✏️ Edit</button>
           <button class="delete-project-btn">🗑️ Delete</button>
+          </div>
         `;
         projectsContainer.appendChild(projectDiv);
       });

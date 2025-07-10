@@ -1,6 +1,8 @@
 // /routes/content.js
 const express = require('express');
 const router = express.Router();
+const fs   = require('fs/promises');      // <-- async/await
+const path = require('path');
 
 // Middleware to check if the user is an admin
 const isAdmin = require('../middleware/isAdmin');
@@ -30,12 +32,27 @@ router.get('/about', async (req, res) => {
   res.json(content);
 });
 
-router.put('/about/:id', isAdmin, async (req, res) => {
-  const updated = await aboutContent.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
+router.put('/about', isAdmin, async (req, res) => {
+  try {
+    const about = await aboutContent.findOne();
+    if (!about) {
+      console.error('No about content found');
+      return res.status(404).json({ message: 'About content not found' });
+    }
+
+    about.heading = req.body.heading;
+    about.text = req.body.text;
+
+    const updated = await about.save(); 
+    res.json(updated);
+    
+  } catch (err) {
+    console.error('Error updating about content:', err);
+    res.status(500).json({ message: 'Error updating about content' });
+  }
 });
 
-router.post('/about/skill', isAdmin, upload.single('icon'), async (req, res) => {
+router.post('/about/skills', isAdmin, upload.single('icon'), async (req, res) => {
   try {
     const { title, description } = req.body;
     const iconPath = req.file ? `/uploads/${req.file.filename}` : '';
@@ -58,6 +75,60 @@ router.post('/about/skill', isAdmin, upload.single('icon'), async (req, res) => 
     res.json({ message: 'Skill added', skill: content.skills.at(-1) });
   } catch (err) {
     res.status(500).json({ message: 'Upload failed', error: err.message });
+  }
+});
+
+router.delete('/about/skills/:id', isAdmin, async (req, res) => {
+  try {
+    const content = await aboutContent.findOne();
+    if (!content) {
+      return res.status(404).json({ message: 'About content not found' });
+    }
+
+    const skillIndex = content.skills.findIndex(skill => skill._id.toString() === req.params.id);
+    if (skillIndex === -1) {
+      return res.status(404).json({ message: 'Skill not found' });
+    }
+
+    // Icon path deletion
+    const iconPath = content.skills[skillIndex].icon;
+    if (iconPath) {
+      const fullPath = path.join(__dirname, '..', 'public', iconPath.replace(/^\/+/, ''));
+      try {
+        await fs.unlink(fullPath);
+        console.log('Icon deleted', fullPath);
+      } catch (err) {
+        console.warn('Could not delelte icon', err.message);
+      }
+    }
+    content.skills.splice(skillIndex, 1);
+    await content.save();
+
+    res.json({ message: 'Skill deleted successfully', skills: content.skills });
+    } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error deleting skill', error: err.message });
+  }
+});
+
+router.put('/about/skills/:id', isAdmin, async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const content = await aboutContent.findOne();
+    if (!content) {
+      return res.status(404).json({ message: 'About content not found' });
+    }
+    const skill = content.skills.id(req.params.id);
+    if (!skill) {
+      return res.status(404).json({ message: 'Skill not found' });
+    }
+    skill.title = title;
+    skill.description = description;
+    await content.save();
+    res.json({ message: 'Skill updated successfully', skill });
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating skill', error: err.message
+    });
   }
 });
 

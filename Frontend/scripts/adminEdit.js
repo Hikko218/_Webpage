@@ -73,7 +73,7 @@ document.addEventListener('click', function (e) {
 
 // Projects edit and delete functionality
 document.addEventListener('click', async (e) => {
-  
+// Delete project functionality  
   if (e.target.classList.contains('delete-project-btn')) {
 
     const card = e.target.closest('.project-card');
@@ -94,7 +94,7 @@ document.addEventListener('click', async (e) => {
       card.remove(); 
     }
   }
-
+// Edit project functionality
   if (e.target.classList.contains('edit-project-btn')) {
     const card = e.target.closest('.project-card');
     const id = card?.dataset.id;
@@ -126,4 +126,144 @@ document.addEventListener('click', async (e) => {
     ul.innerHTML = newFeatures.map(f => `<li>${f}</li>`).join('');
   }
 }
+// Add new project functionality
+  if (e.target.classList.contains('add-project-btn')) {
+    
+  const newTitle = prompt("New Titel:");
+  if (!newTitle) return;
+
+  const newFeaturesRaw = prompt("New Features (comma separated):");
+  if (newFeaturesRaw === null) return; 
+
+  const newFeatures = newFeaturesRaw.split(',').map(f => f.trim()).filter(Boolean);
+
+  const res = await fetch("http://localhost:3000/api/content/projects", {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: newTitle,
+      features: newFeatures
+    })
+  });
+
+  if (res.ok) {
+    showSection('projects'); // Refresh the projects section to show updated content
+    console.log("New project added successfully");
+  }
+}
 });
+
+// About section edit and delete functionality
+// Edit about section functionality
+document.addEventListener('click', async (e) => { 
+  if (e.target.classList.contains('edit-about-btn')) {
+    const newHeading = prompt("New About Heading:");
+    if (!newHeading) return;
+
+    const newText = prompt("New About Text:");
+    if (newText === null) return; 
+
+    const res = await fetch('http://localhost:3000/api/content/about', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        heading: newHeading,
+        text: newText
+      })
+    });
+
+    if (res.ok) {
+      console.log("About section updated successfully");
+    }
+  }
+ 
+// Delete skill functionality
+  if (e.target.classList.contains('delete-skills-btn')) {
+    const skillDiv = e.target.closest('.skill');
+    const skillId = skillDiv.dataset.id;
+
+    const confirmed = confirm("Skill delete?");
+    if (!confirmed) return;
+
+    const res = await fetch(`http://localhost:3000/api/content/about/skills/${skillId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
+    if (res.ok) {
+      skillDiv.remove(); // Remove the skill from the DOM
+      console.log("Skill deleted successfully");
+    }
+  }
+
+  if (e.target.classList.contains('edit-skills-btn')) {
+    const skillDiv = e.target.closest('.skill');
+    const skillId = skillDiv.dataset.id;
+
+    const newTitle = prompt("New Skill Title:");
+    if (!newTitle) return;
+
+    const newDescription = prompt("New Skill Description:");
+    if (newDescription === null) return; 
+
+    const res = await fetch(`http://localhost:3000/api/content/about/skills/${skillId}`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: newTitle,
+        description: newDescription,
+      })
+    });
+
+    if (res.ok) {
+      // Update the skill in the DOM
+      skillDiv.querySelector('h3').textContent = newTitle;
+      skillDiv.querySelector('p').textContent = newDescription;
+      skillDiv.querySelector('img').src = `http://localhost:3000${newIconPath}`;
+      console.log("Skill updated successfully");
+    }
+  }
+});
+
+// Add new skill functionality
+document.getElementById("skill-add-btn").addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  const file = document.getElementById('skillFile').files[0];
+  const title = document.getElementById('newSkillTitle').value;
+  const description = document.getElementById('newSkillDescription').value;
+
+  if (!file || !title || !description) {
+    alert("Please fill out all fields");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('icon', file);
+  formData.append('title', title);
+  formData.append('description', description);
+
+  try {
+    // Send the form data to the server
+    const res = await fetch('http://localhost:3000/api/content/about/skills', {
+      method: 'POST',
+      credentials: 'include',
+      body: formData
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      console.log("Skill added");
+      showSection('about-me'); 
+    } else {
+      alert("Error: " + data.message);
+    }
+  } catch (err) {
+    console.error("Upload error:", err);
+  }
+});
+
+

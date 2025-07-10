@@ -107,7 +107,7 @@ main {
   color: rgb(7, 131, 240);
   font-weight: bold;
   text-decoration: none;
-  transition: 0.3s;                                /* Smooth hover */
+  transition: 0.3s;                               
 }
 
 .topmenu:hover {
@@ -142,29 +142,15 @@ main {
   margin: 0 auto 30px auto;
 }
 
-.home-content .btn {
-  padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.5);
-  color: rgb(7, 131, 240);
-  box-shadow: 0px 0px 20px rgb(7, 131, 240);
-  border: none;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.home-content .btn:hover {
-  background-color: aliceblue;
-}
-
 .home-admin-edit, #home-edit-form {
   position: relative;
   display: flex;
-  flex-direction: column; /* Neu */
-  align-items: center;     /* Zentriert horizontal */
+  flex-direction: column; 
+  align-items: center;     
   justify-content: center;
-  margin-top: 2rem;        /* Weniger Abstand als vorher */
-  gap: 0.2rem;               /* Abstand zwischen Feldern */
+  margin-top: 2rem;        
+  gap: 0.2rem; 
+  color: rgb(7, 131, 240);             
   z-index: 1;
 }
 
@@ -241,6 +227,9 @@ main {
 }
 
 #skills_header {
+   display: flex;
+  flex-direction: column;
+  align-items: center;
   color:rgb(7, 131, 240);
   font-size: 30px;
   text-align: center;
@@ -277,7 +266,53 @@ main {
   color:rgb(7, 131, 240);
 }
 
+#upload-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#skillUploadForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+  z-index: 1;
+}
+
+#skillUploadForm input[type="text"],
+#skillUploadForm textarea,
+.file-label {
+  width: 250px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+/* Style File-Upload-Button */
+.file-label {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border:none;
+  color: rgb(7, 131, 240);
+  box-shadow: 0px 0px 10px rgb(7, 131, 240);
+}
+
+.file-label:hover {
+  background-color: aliceblue;
+}
+
 /* Projects */
+.projects-wrapper {
+  display:flex;
+  flex-direction: column;
+}
 
 .projects-container {
   display: flex;
@@ -577,6 +612,21 @@ main {
 
 /* Buttons */
 
+.home-content .btn {
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: rgb(7, 131, 240);
+  box-shadow: 0px 0px 20px rgb(7, 131, 240);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-content .btn:hover {
+  background-color: aliceblue;
+}
+
 #login-btn {
   color: aliceblue;  
   background-color: rgb(2, 144, 2);
@@ -598,7 +648,7 @@ main {
   box-shadow: 0px 0px 10px black;
 }
 
-button {
+button{
   margin-top: 10px;
   padding: 0.3rem 1.2rem;
   font-size: 1rem;
@@ -612,13 +662,45 @@ button {
   box-shadow: 0px 0px 10px rgb(7, 131, 240);
 }
 
-#login-btn:hover{
+#login-btn:hover, #skill-add-btn:hover{
   font-weight: bold;
   cursor: default;
   box-shadow: 0px 0px 10px rgb(7, 131, 240);
 }
 button:hover{
   background-color: aliceblue;
+}
+
+.project-btn-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+  z-index: 1;
+}
+
+.add-project-btn {
+  align-self: center;
+  z-index: 1;
+}
+
+.skills-button-group {
+  display: flex;
+}
+
+.about-button-group {
+  display: flex;
+  justify-content: center; 
+  width: 50%;
+  margin-top: 12rem;
+}
+
+.edit-about-btn,
+.edit-skills-btn,
+.delete-skills-btn {
+  padding: 0.2rem 0.5rem;
 }
 
 /* Popup */
@@ -672,10 +754,18 @@ footer {
 .home-admin-edit    {display:none;} 
 .edit-project-btn   {display:none;}
 .delete-project-btn {display:none;}
+.add-project-btn    {display:none;}
+.edit-about-btn     {display:none;}
+.edit-skills-btn    {display:none;}
+.delete-skills-btn  {display:none;}
+#skillUploadForm    {display:none;}
 
 body.admin .delete-review-btn, body.admin .home-admin-edit, 
-body.admin .edit-project-btn, body.admin .delete-project-btn { 
-  display:inline-block; 
+body.admin .edit-project-btn, body.admin .delete-project-btn,
+body.admin .add-project-btn, body.admin .edit-about-btn,
+body.admin .edit-skills-btn, body.admin .delete-skills-btn,
+body.admin #skillUploadForm { 
+  display: flex;
 }
 
 
