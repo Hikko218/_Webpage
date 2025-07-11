@@ -1,8 +1,32 @@
 import { showPopupReview, showPopupMessage, showPopupError } from './popup.js';
-
 //Show the home section on page load
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   showSection('home');
+
+  try {
+    const res = await fetch('http://localhost:3000/api/admin/check', {
+      credentials: 'include',
+    });
+
+    if (res.ok) {
+    const data = await res.json();
+
+
+    if (data.loggedIn) {
+      const adminLogin = document.getElementById("adminLoginBtn");
+      adminLogin.innerHTML = "Logout";
+      adminLogin.id = "logout-btn"; 
+      adminLogin.className ="logout-btn" // Change button ID for logout
+      document.body.classList.add('admin');
+      };
+    } else {
+      const adminLogout = document.getElementById("adminLoginBtn");
+      adminLogout.innerHTML = "Login";
+      adminLogout.className = "topmenu"; 
+    }
+  } catch (err) {
+    console.error('Error checking Session:', err);
+  }
 });
 
 // Nav-bar and section management 
@@ -135,6 +159,46 @@ async function showSection(sectionId) {
       console.error('Error loading home content:', err);
     }
   }
+  // Show Contact Messages for Admin
+  if (sectionId === 'contact') {
+  try {
+    const res = await fetch('http://localhost:3000/api/content/contact', {
+      credentials: 'include'
+    });
+
+    if (!res.ok) {
+      if (res.status === 401) {
+        console.warn("Admin login required.– ");
+        return;
+      }
+      throw new Error("Error fetching contact messages");
+    }
+
+    const messages = await res.json();
+
+    const contactContainer = document.getElementById('contact-messages');
+    contactContainer.innerHTML = '';
+
+    messages.forEach(message => {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'contact-message';
+      messageDiv.dataset.id = message._id; 
+      messageDiv.innerHTML = `
+        <h3>${message.name}</h3>
+        <p>${message.message}</p>
+        <p><strong>Email:</strong> ${message.email}</p>
+        <small>${message.date}</small><br>
+        <button class="delete-contact-btn">🗑️ Delete</button>
+      `;
+      contactContainer.appendChild(messageDiv);
+    });
+
+    console.log('Contact messages loaded.');
+
+  } catch (err) {
+    console.error('Error loading contact messages:', err);
+    }
+  }
 }
 
 async function showLoginSection() {
@@ -151,7 +215,13 @@ document.getElementById('aboutBtn').addEventListener('click', () => showSection(
 document.getElementById('reviewsBtn').addEventListener('click', () => showSection('reviews'));
 document.getElementById('contactBtn').addEventListener('click', () => showSection('contact'));
 document.getElementById('homeBtn').addEventListener('click', () => showSection('home'));
-document.getElementById('adminLoginBtn').addEventListener('click', () => showLoginSection());
+
+document.addEventListener('click', async (e) => {
+    if (e.target.matches('#adminLoginBtn')) {
+      showLoginSection();
+    }
+});
+
 
 // Frontend/scripts/script.js
 // Export functions for use in other modules
