@@ -91,6 +91,7 @@ async function message(event) {
             name: name.value.trim(),
             email: email.value.trim(),
             message: messageInput.value.trim(),
+            date: new Date().toISOString(),      // Ensure date is in ISO format
           }),
         }
       );

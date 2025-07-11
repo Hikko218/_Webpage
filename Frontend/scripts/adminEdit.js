@@ -266,4 +266,25 @@ document.getElementById("skill-add-btn").addEventListener('click', async (e) => 
   }
 });
 
+// Contact messages deletion functionality
+document.addEventListener('click', async (e) => {
+    if (e.target.matches('.delete-contact-btn')) {
+    const messageDiv = e.target.closest('.contact-message');
+    const messageId = messageDiv.dataset.id;
+
+    const confirmed = confirm("Delete contact message?");
+    if (!confirmed) return;
+
+    const res = await fetch(`http://localhost:3000/api/content/contact/${messageId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+
+    if (res.ok) {
+      messageDiv.remove(); // Remove the message from the DOM
+      console.log("Contact message deleted successfully");
+    }
+    }
+});
+
 

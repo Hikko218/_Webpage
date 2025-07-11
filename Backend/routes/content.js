@@ -214,4 +214,16 @@ router.post('/contact', async (req, res) => {
 };
 });
 
+router.delete('/contact/:id', isAdmin, async (req, res) => {
+  try {
+    const deletedContact = await contactContent.findByIdAndDelete(req.params.id);
+    if (!deletedContact) {
+      return res.status(404).json({ message: 'Contact message not found' });
+    }
+    res.json({ message: 'Contact message deleted successfully', contact: deletedContact });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting contact message', error: err.message });
+  }
+});
+
 module.exports = router;
