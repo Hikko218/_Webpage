@@ -105,7 +105,7 @@ document.addEventListener('click', async (e) => {
   const newFeaturesRaw = prompt("New Features (comma separated):");
   if (newFeaturesRaw === null) return; 
 
-  const newFeatures = newFeaturesRaw.split(',').map(f => f.trim()).filter(Boolean);
+  const newFeatures = newFeaturesRaw.split(',,').map(f => f.trim()).filter(Boolean);
 
   const res = await fetch(`http://localhost:3000/api/content/projects/${id}`, {
     method: 'PUT',
@@ -135,7 +135,7 @@ document.addEventListener('click', async (e) => {
   const newFeaturesRaw = prompt("New Features (comma separated):");
   if (newFeaturesRaw === null) return; 
 
-  const newFeatures = newFeaturesRaw.split(',').map(f => f.trim()).filter(Boolean);
+  const newFeatures = newFeaturesRaw.split(',,').map(f => f.trim()).filter(Boolean);
 
   const res = await fetch("http://localhost:3000/api/content/projects", {
     method: 'POST',
