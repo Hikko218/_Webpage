@@ -65,7 +65,7 @@ async function showSection(sectionId) {
         div.innerHTML = `
           <img src="http://localhost:3000${skill.icon}" alt="${skill.title}">
           <h3>${skill.title}</h3>
-          <p>${skill.description}</p>
+          <p>${skill.description.split(',,').map(item => item.trim()).join('<br>')}</p>
           <div class="skills-button-group">
           <button type="button" class="edit-skills-btn">✏️</button>
           <button type="button" class="delete-skills-btn">🗑️</button>

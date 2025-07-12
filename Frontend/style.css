@@ -218,12 +218,11 @@ main {
   gap: 2rem;
   margin: 3rem auto; 
   background-color:  rgba(0, 0, 0, 0.5);
-  max-width:1000px;
+  max-width:100%;
   border-radius: 20px;
   box-shadow: 5px 5px 20px rgb(7, 131, 240);
   min-height: 200px;
   width: 90%;
-  max-width: 1000px;
 }
 
 #skills_header {
