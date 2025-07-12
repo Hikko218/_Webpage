@@ -104,7 +104,7 @@ Port=3000
 ## 🎥 Demo
 
 Watch the project walkthrough video here:  
-[Demo Video](https://your-demo-link.com)
+[Demo Video](https://www.loom.com/share/daa253b0a7204864935d6510a621b044?sid=5689b276-e205-4852-9bb8-ec64ea5ca19a)
 
 ---
 
