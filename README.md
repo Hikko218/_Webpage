@@ -42,6 +42,7 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 ---
 
 ## 🗂️ Project Structure
+<pre>
 WEBPAGE/
 ├── .vscode/
 │   └── settings.json
@@ -79,7 +80,7 @@ WEBPAGE/
 ├── README.md
 ├── .gitignore
 ├── LICENSE
-
+</pre>
 
 ## 📦 Setup
 
