@@ -71,7 +71,6 @@ main {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
@@ -81,6 +80,7 @@ main {
   align-items: center;
   padding: 10px 30px;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .nav-center {
@@ -792,9 +792,13 @@ body.admin .contact_inner_wrapper {display:none;}
 
 /*  Responsive Styles */
 
-/* Stack header nav items and center them on medium screens */
+/* Adjust font size and layout for iphone/tablets */
 
 @media (max-width: 1024px) {
+  body {
+    font-size: 0.95rem;
+  }
+
   header {
     flex-direction: column;
     align-items: center;
@@ -804,18 +808,32 @@ body.admin .contact_inner_wrapper {display:none;}
     justify-content: center;
     gap: 1rem;
   }
-}
-
-/* Adjust font size and layout for tablets */
-
-@media (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
-  }
-
+  
   #navdiv {
     height: 100%;
     max-height: 70px;
+  }
+
+   .nav-inner {
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1000;
+  }
+
+  .nav-center {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .nav-login {
+    position: static; 
+    margin-top: 10px;
+    text-align: center;
   }
 
   .about-me {
