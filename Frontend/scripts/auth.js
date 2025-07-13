@@ -1,5 +1,4 @@
 import { showSection } from "./sectionManagment.js";
-import { showPopupReview, showPopupMessage, showPopupError } from "./popup.js";
 
 // Event listeners for Admin login form
 document
@@ -23,13 +22,13 @@ document
     if (res.ok) {
       alert("Login successful");
       adminLogin.innerHTML = "Logout";
-      adminLogin.className = "logout-btn"; // Change button ID for logout
-      adminLogin.id = "logout-btn"; // Change button ID for logout
+      adminLogin.className = "logout-btn"; 
+      adminLogin.id = "logout-btn";           // Change button ID for logout
       showSection("home");
       // Show the admin edit section on successful login
       document.body.classList.add('admin');
 
-      usernameInput.value = ""; // Clear input fields
+      usernameInput.value = "";             // Clear input fields
       passwordInput.value = "";
     } else {
       alert("Login failed");
@@ -41,7 +40,7 @@ document.addEventListener('click', async (e) => {
     if (e.target.matches('#logout-btn')) {
   const res = await fetch("http://localhost:3000/api/admin/logout", {
     method: "POST",
-    credentials: "include", // Include cookies for session management
+    credentials: "include", 
   });
 
   if (res.ok) {
@@ -49,7 +48,7 @@ document.addEventListener('click', async (e) => {
     const adminLogout = document.getElementById("logout-btn");
     adminLogout.innerHTML = "Login";
     adminLogout.className = "topmenu";
-    adminLogout.id = "adminLoginBtn" // Change button ID back to login
+    adminLogout.id = "adminLoginBtn"                    // Change button ID back to login
     // Hide the admin edit section on logout
     document.body.classList.remove('admin');
     // Redirect to home section

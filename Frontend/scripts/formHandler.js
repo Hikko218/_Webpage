@@ -1,8 +1,9 @@
+// Frontend/scripts/formHandler.js
+// Import necessary functions from other modules
 import { showPopupReview, showPopupMessage, showPopupError } from "./popup.js";
 import { showSection } from "./sectionManagment.js";
 
 // addRecommendation function
-
 async function addReview(event) {
   event.preventDefault();
 
@@ -10,7 +11,7 @@ async function addReview(event) {
   let email = document.getElementById("email");
   let name = document.getElementById("name");
 
-  // Validierung
+  // Validate input fields
   if (
     review.value.trim() !== "" &&
     email.value.trim() !== "" &&
@@ -34,7 +35,6 @@ async function addReview(event) {
       );
 
       if (response.ok) {
-        console.log("New review saved to database");
         showPopupReview(true);
 
         // Input fields reset
@@ -44,37 +44,31 @@ async function addReview(event) {
 
         await showSection("reviews");
       } else {
-        const error = await response.json();
-        console.error("Server error:", error.message);
         showPopupError(true);
       }
     } catch (err) {
-      console.error("Network error:", err);
       showPopupError(true);
     }
   } else {
-    console.log("No valid input");
     showPopupError(true);
   }
 }
 
 // Event listeners for review form
-
 document
   .querySelector(".review_input_form")
   .addEventListener("submit", addReview);
 
 // message function client-side
-
 async function message(event) {
   event.preventDefault();
 
   let messageInput = document.getElementById("new_message");
-  let email = document.getElementById("email_m"); // valid email test const
+  let email = document.getElementById("email_m"); 
   let name = document.getElementById("name_m");
 
   if (
-    messageInput.value.trim() !== "" && // valid input test
+    messageInput.value.trim() !== "" && 
     email.value.trim() !== "" &&
     name.value.trim() !== ""
   ) {
@@ -97,27 +91,23 @@ async function message(event) {
       );
 
       if (response.ok) {
-        console.log("New message added to database");
         showPopupMessage(true);
 
         messageInput.value = "";
         email.value = "";
         name.value = "";
       } else {
-        console.log("No valid input");
         showPopupError(true);
       }
     } catch (err) {
-      console.error("Network error:", err);
       showPopupError(true);
     }
   } else {
-    console.log("No valid input");
     showPopupError(true);
   }
 }
-// Event listeners for message form
 
+// Event listeners for message form
 document
   .querySelector(".contact_input_form")
   .addEventListener("submit", message);

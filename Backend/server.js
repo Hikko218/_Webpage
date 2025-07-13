@@ -4,6 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
+const debug = require('debug')('app:error');
 
 // This allows the frontend to communicate with the backend
 app.use(cors({
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {
+  debug(`404 Not Found: ${req.method} ${req.originalUrl}`);
   res.status(404).json({
     error: 'Not Found',
     message: `Cannot ${req.method} ${req.originalUrl}`
@@ -56,7 +58,7 @@ app.use((req, res, next) => {
 
 // General Error Handling Middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  debug('500 Error', err.stack);
   res.status(500).json({
     error: 'Internal Server Error',
     message: err.message

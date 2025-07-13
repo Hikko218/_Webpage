@@ -1,7 +1,7 @@
 // File: Frontend/scripts/adminEdit.js
 // This script handles the admin editing functionality.
-// It allows the admin to change the content of the different sections.
 
+// Import necessary functions
 import { showSection } from "./sectionManagment.js";
 
 //Home Content Edit Functionality

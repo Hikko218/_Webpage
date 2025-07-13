@@ -1,5 +1,7 @@
-import { showPopupReview, showPopupMessage, showPopupError } from './popup.js';
+// Frontend/scripts/sectionManagment.js
+
 //Show the home section on page load
+//Check if the user is logged in as admin and update the login button accordingly
 window.addEventListener('DOMContentLoaded', async () => {
   showSection('home');
 
@@ -16,7 +18,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       const adminLogin = document.getElementById("adminLoginBtn");
       adminLogin.innerHTML = "Logout";
       adminLogin.id = "logout-btn"; 
-      adminLogin.className ="logout-btn" // Change button ID for logout
+      adminLogin.className ="logout-btn" 
       document.body.classList.add('admin');
       };
     } else {
@@ -25,7 +27,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       adminLogout.className = "topmenu"; 
     }
   } catch (err) {
-    console.error('Error checking Session:', err);
+    console.log('No admin session found. Please log in.');
   }
 });
 
@@ -57,7 +59,6 @@ async function showSection(sectionId) {
         </div>
         `; 
       
-
       about.skills.forEach(skill => {
         const div = document.createElement('div');
         div.className = 'skill';
@@ -75,7 +76,7 @@ async function showSection(sectionId) {
       });
 
     } catch (err) {
-      console.error('Error loading about content:', err);
+      alert('Error loading about content. Try again later.');
     }
   }
   // Load reviews content if the section is 'reviews'
@@ -104,7 +105,7 @@ async function showSection(sectionId) {
       });
     }
     catch (err) {
-      console.error('Error loading reviews:', err);
+      alert('Error loading reviews. Try again later.');
     }
   }
   // Load projects content if the section is 'projects'
@@ -139,7 +140,7 @@ async function showSection(sectionId) {
         projectsContainer.appendChild(projectDiv);
       });
     } catch (err) {
-      console.error('Error loading projects:', err);
+      alert('Error loading projects. Try again later.');
     }
   }
   // Load home content if the section is 'home'
@@ -153,10 +154,10 @@ async function showSection(sectionId) {
       document.querySelector('.home-content').innerHTML = ` 
       <h1>${homeContent.heading}</h1>
       <p>${homeContent.text}</p>
-      <a href="#" class="btn" onclick="showSection('projects')">View My Projects</a>
+      <a href="#" class="btn" id ="home-projects-btn">View My Projects</a>
     `; 
     } catch (err) {
-      console.error('Error loading home content:', err);
+      alert('Error loading home content. Try again later.');
     }
   }
   // Show Contact Messages for Admin
@@ -196,11 +197,12 @@ async function showSection(sectionId) {
     console.log('Contact messages loaded.');
 
   } catch (err) {
-    console.error('Error loading contact messages:', err);
+    console.log('Error loading contact messages');
     }
   }
 }
 
+// Show login section
 async function showLoginSection() {
   const login = document.getElementById("loginSection");
   if (login.style.display === "block") {
@@ -210,20 +212,25 @@ async function showLoginSection() {
   }
 }
 
+// Event listeners for navigation buttons
 document.getElementById('projectsBtn').addEventListener('click', () => showSection('projects'));
 document.getElementById('aboutBtn').addEventListener('click', () => showSection('about-me'));
 document.getElementById('reviewsBtn').addEventListener('click', () => showSection('reviews'));
 document.getElementById('contactBtn').addEventListener('click', () => showSection('contact'));
 document.getElementById('homeBtn').addEventListener('click', () => showSection('home'));
-
+document.addEventListener('click', (e) => {
+  if (e.target.matches('#home-projects-btn')) {
+    e.preventDefault();          
+    showSection('projects');
+  }
+});
+// Event listener for admin login/logout button
 document.addEventListener('click', async (e) => {
     if (e.target.matches('#adminLoginBtn')) {
       showLoginSection();
     }
 });
 
-
-// Frontend/scripts/script.js
 // Export functions for use in other modules
 export {showSection, showLoginSection};
 
