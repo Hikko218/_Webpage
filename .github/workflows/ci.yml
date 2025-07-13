@@ -34,6 +34,7 @@ jobs:
         run: |
           echo "MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }}" >> Backend/.env.test
           echo "NODE_ENV=test" >> Backend/.env.test
+          echo "SESSION_SECRET=testsecret" >> Backend/.env.test
 
       - name: Install dependencies
         run: |
