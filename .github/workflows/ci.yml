@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # Run the matrix on two current LTS versions
+    strategy:
+      matrix:
+        node-version: [18, 20]
+
+    steps:
+      # 1 Checkout sources
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2 Setup Node
+      - name: Use Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm                       # <-- speeds up instal-l for re-runs
+
+      # 3 Install dependencies
+      #    If your backend lives in ./Backend adjust the path
+      - name: Install dependencies
+        run: |
+          cd Backend
+          npm ci
+
+      # 4 Run ESLint (fails the job on any remaining problems)
+      - name: Lint sources
+        run: |
+          cd Backend
+          npm run lint                     # "lint": "eslint ."
+
+      # 5 Run the test-suite
+      - name: Run Jest tests
+        run: |
+          cd Backend
+          npm test                         # "test": "jest --runInBand"
+
+      # (Optional) 6) Upload the code-coverage report   
+      - name: Upload coverage report
+        if: ${{ success() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: jest-coverage-${{ matrix.node-version }}
+          path: Backend/coverage

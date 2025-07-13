@@ -66,7 +66,11 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`🚀 Server runs ${process.env.PORT || 3000}`);
-});
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () =>
+  console.log(`Server listening on port ${PORT}`)
+
+);
+// Export for testing
+module.exports = {app, server};
 
