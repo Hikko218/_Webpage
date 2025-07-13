@@ -29,7 +29,13 @@ jobs:
           cache-dependency-path: Backend/package-lock.json
 
       # 3 Install dependencies
-      #    If your backend lives in ./Backend adjust the path
+      # MongoDB connection string
+      - name: Create .env file
+        run: |
+          cat <<EOF > Backend/.env
+          MONGODB_URI=${{ secrets.MONGODB_URI }}
+          EOF
+      
       - name: Install dependencies
         run: |
           cd Backend
