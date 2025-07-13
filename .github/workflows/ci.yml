@@ -33,7 +33,7 @@ jobs:
       - name: Create .env file
         run: |
           cat <<EOF > Backend/.env
-          MONGODB_URI=${{ secrets.MONGO_URI }}
+          MONGO_URI=${{ secrets.MONGO_URI }}
           EOF
       
       - name: Install dependencies
