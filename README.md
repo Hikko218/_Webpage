@@ -122,7 +122,7 @@ I’m transitioning into web development, bringing leadership skills from my rol
 Currently building backend skills (Node.js, Express, MongoDB) and extending into full-stack development.
 
 🔗 [GitHub Portfolio](https://github.com/Hikko218)  
-🔗 [LinkedIn](https://www.linkedin.com/in/your-link/](https://www.linkedin.com/in/heiko-ries-b35778374/)
+🔗 [LinkedIn](https://www.linkedin.com/in/heiko-ries-b35778374/)
 
 ---
 
