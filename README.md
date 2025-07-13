@@ -108,7 +108,7 @@ WEBPAGE/
 2. Install dependencies: `npm install`  
 3. Create `.env` with:
 
-<pre><code> ADMIN_USER=yourAdminUsername
+<pre><code>ADMIN_USER=yourAdminUsername
 ADMIN_PASS=yourHashedPassword  # Use bcrypt to hash
 MONGODB_URI=yourMongoDbConnectionString
 SECRET_KEY=yourStrongRandomSecretKeyHere
