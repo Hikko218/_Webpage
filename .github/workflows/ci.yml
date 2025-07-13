@@ -30,13 +30,11 @@ jobs:
 
       # 3 Install dependencies
       # MongoDB connection string
-      - name: Create .env file
+      - name: Create .env.test file
         run: |
-          cat <<EOF > Backend/.env
-          MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }}
-          NODE_ENV=test
-          EOF
-      
+          echo "MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }}" >> Backend/.env.test
+          echo "NODE_ENV=test" >> Backend/.env.test
+
       - name: Install dependencies
         run: |
           cd Backend
