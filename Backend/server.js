@@ -1,14 +1,14 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
+
+const isTestEnv = process.env.NODE_ENV === 'test';
+
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const debug = require('debug')('app:error');
-
-// Load .env-Datei
-const isTestEnv = process.env.NODE_ENV === 'test';
-dotenv.config({ path: isTestEnv ? '.env.test' : '.env' });
 
 // This allows the frontend to communicate with the backend
 app.use(cors({
