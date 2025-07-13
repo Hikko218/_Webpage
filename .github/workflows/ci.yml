@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm                       # <-- speeds up instal-l for re-runs
+          cache-dependency-path: Backend/package-lock.json
 
       # 3 Install dependencies
       #    If your backend lives in ./Backend adjust the path
