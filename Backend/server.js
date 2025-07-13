@@ -65,12 +65,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () =>
-  console.log(`Server listening on port ${PORT}`)
-
-);
+// Start the server only if this file is executed directly
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`🚀 Server läuft auf ${PORT}`));
+}
 // Export for testing
-module.exports = {app, server};
+module.exports = {app, server, mongoose};
 
