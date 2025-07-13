@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const debug = require('debug')('app:error');
+
+// Load .env-Datei
+const isTestEnv = process.env.NODE_ENV === 'test';
+dotenv.config({ path: isTestEnv ? '.env.test' : '.env' });
 
 // This allows the frontend to communicate with the backend
 app.use(cors({
@@ -28,11 +32,9 @@ app.use(session({
 }
 }));
 
-// MongoDB string test or production
-const isTestEnv = process.env.NODE_ENV === 'test';
-const mongoURI = isTestEnv ? process.env.test.MONGO_URI_TEST : process.env.MONGO_URI;
-
 // MongoDB connection
+const mongoURI = isTestEnv ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected successfully'))
   .catch(err => console.error('❌ MongoDB error:', err));
