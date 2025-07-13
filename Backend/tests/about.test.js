@@ -1,8 +1,21 @@
 const request = require('supertest');
+const { app, server, mongoose } = require('../server'); 
+
 //Skip isAdmin check
 jest.mock('../middleware/isAdmin', () => (req, res, next) => next());
 
-const { app, server } = require('../server'); 
+//Start server
+let server;
+
+beforeAll(() => {
+  server = app.listen(0);              
+});
+
+//close server
+afterAll(async () => {
+  await mongoose.connection.close();   
+  await server.close();                
+});
 
 //Test get about
 describe('GET /api/content/about', () => {
@@ -41,7 +54,3 @@ describe('PUT /api/content/about/', () => {
     });
 });
 
-// close server
-afterAll((done) => {
-  server.close(done); 
-});
