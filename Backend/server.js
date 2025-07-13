@@ -28,6 +28,10 @@ app.use(session({
 }
 }));
 
+// MongoDB string test or production
+const isTestEnv = process.env.NODE_ENV === 'test';
+const mongoURI = isTestEnv ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB connected successfully'))
