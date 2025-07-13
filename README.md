@@ -108,13 +108,13 @@ WEBPAGE/
 2. Install dependencies: `npm install`  
 3. Create `.env` with:
 
-ADMIN_USER=yourAdminUsername
-ADMIN_PASS=yourHashedPassword  # Use bcrypt to hash
-MONGODB_URI=yourMongoDbConnectionString
-SECRET_KEY=yourStrongRandomSecretKeyHere
-SESSION_SECRET=yourStrongRandomSecretKeyHere
-CLIENT_URL=http://localhost:5500
-Port=3000
+-ADMIN_USER=yourAdminUsername
+-ADMIN_PASS=yourHashedPassword  # Use bcrypt to hash
+-MONGODB_URI=yourMongoDbConnectionString
+-SECRET_KEY=yourStrongRandomSecretKeyHere
+-SESSION_SECRET=yourStrongRandomSecretKeyHere
+-CLIENT_URL=http://localhost:5500
+-Port=3000
 
 4. Run the server: `node index.js`  
 5. Open in browser: `http://localhost:3000`
