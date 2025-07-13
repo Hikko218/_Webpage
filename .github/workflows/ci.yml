@@ -52,7 +52,7 @@ jobs:
       - name: Run Jest tests
         run: |
           cd Backend
-          npm test                         # "test": "jest --runInBand"
+          NODE_ENV=test npm test                         # "test": "jest --runInBand"
 
       # (Optional) 6) Upload the code-coverage report   
       - name: Upload coverage report
