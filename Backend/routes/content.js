@@ -1,4 +1,10 @@
-// /routes/content.js
+/**
+ * @swagger
+ * tags:
+ *   name: Content
+ *   description: Public and admin-protected content endpoints (Home, About, Skills, Projects, Reviews, Contact)
+ */
+
 const express = require('express');
 const router = express.Router();
 const fs   = require('fs/promises');      // <-- async/await
@@ -17,8 +23,22 @@ const reviewContent = require('../models/reviewSchema');
 const contactContent = require('../models/contactSchema');
 const upload = require('../middleware/upload');
 
-// Home Content Routes
-// Get Home Content
+/**
+ * @swagger
+ * /api/content/home:
+ *   get:
+ *     summary: Fetch home page content
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: Successfully fetched
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/HomeContent'
+ */
 router.get('/home', async (req, res) => {
   try {
     const content = await homeContent.find();
@@ -30,7 +50,24 @@ router.get('/home', async (req, res) => {
   }
 });
 
-// Update Home Content (admin only)
+/**
+ * @swagger
+ * /api/content/home:
+ *   put:
+ *     summary: Update home content (admin only)
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: Successfully updated
+ *       500:
+ *         description: Error during update
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/HomeContent'
+ */
 router.put('/home', isAdmin, async (req, res) => {
   try {
     const updated = await homeContent.findByIdAndUpdate('home', req.body, { new: true });
@@ -42,8 +79,22 @@ router.put('/home', isAdmin, async (req, res) => {
   }
 });
 
-// About Content Routes
-// Get About Content
+/**
+ * @swagger
+ * /api/content/about:
+ *   get:
+ *     summary: Fetch about section content
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/AboutContent'
+ */
 router.get('/about', async (req, res) => {
   try {
     const content = await aboutContent.find();
@@ -55,7 +106,22 @@ router.get('/about', async (req, res) => {
   }
 });
 
-// Update About Content (admin only)
+/**
+ * @swagger
+ * /api/content/about:
+ *   put:
+ *     summary: Update about section text (admin only)
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/AboutContent'
+ */
 router.put('/about', isAdmin, async (req, res) => {
   try {
     const about = await aboutContent.findOne();
@@ -76,7 +142,35 @@ router.put('/about', isAdmin, async (req, res) => {
   }
 });
 
-// Post About Content Skills (admin only)
+/**
+ * @swagger
+ * /api/content/about/skills:
+ *   post:
+ *     summary: Add new skill (admin only)
+ *     tags: [Content]
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               icon:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       201:
+ *         description: Skill added
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Skill'
+ */
 router.post('/about/skills', isAdmin, upload.single('icon'), async (req, res) => {
   try {
     const { title, description } = req.body;
@@ -104,7 +198,28 @@ router.post('/about/skills', isAdmin, upload.single('icon'), async (req, res) =>
   }
 });
 
-// Delete About Content Skills (admin only)
+/**
+ * @swagger
+ * /api/content/about/skills/{id}:
+ *   delete:
+ *     summary: Delete a skill (admin only)
+ *     tags: [Content]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Skill deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Skill'
+ */
 router.delete('/about/skills/:id', isAdmin, async (req, res) => {
   try {
     const content = await aboutContent.findOne();
@@ -141,7 +256,28 @@ router.delete('/about/skills/:id', isAdmin, async (req, res) => {
   }
 });
 
-// Update About Content Skills (admin only)
+/**
+ * @swagger
+ * /api/content/about/skills/:id:
+ *   post:
+ *     summary: update skill (admin only)
+ *     tags: [Content]
+ *     requestBody:
+ *       content:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Skill updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Skill'
+ */
 router.put('/about/skills/:id', isAdmin, async (req, res) => {
   try {
     const { title, description } = req.body;
@@ -166,8 +302,22 @@ router.put('/about/skills/:id', isAdmin, async (req, res) => {
   }
 });
 
-// Projects Content Routes
-// Get all projects
+/**
+ * @swagger
+ * /api/content/projects:
+ *   get:
+ *     summary: Retrieve all projects
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: List of projects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Project'
+ */
 router.get('/projects', async (req, res) => {
   try {
   const content = await projectContent.find();
@@ -178,7 +328,28 @@ router.get('/projects', async (req, res) => {
   }
 });
 
-// Update a project (admin only)
+/**
+ * @swagger
+ * /api/content/projects/{id}:
+ *   put:
+ *     summary: Update a project (admin only)
+ *     tags: [Content]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Project updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Project'
+ */
 router.put('/projects/:id', isAdmin, async (req, res) => {
   try {
   const updated = await projectContent.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -189,7 +360,28 @@ router.put('/projects/:id', isAdmin, async (req, res) => {
   }
 });
 
-// Delete a project (admin only)
+/**
+ * @swagger
+ * /api/content/projects/{id}:
+ *   delete:
+ *     summary: Delete a project (admin only)
+ *     tags: [Content]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Project deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Project'
+ */
 router.delete('/projects/:id', isAdmin, async (req, res) => {
   try {
     const deletedProject = await projectContent.findByIdAndDelete(req.params.id);
@@ -204,7 +396,35 @@ router.delete('/projects/:id', isAdmin, async (req, res) => {
   }
 });
 
-// Add a new project (admin only)
+/**
+ * @swagger
+ * /api/content/projects:
+ *   post:
+ *     summary: Add a new project (admin only)
+ *     tags: [Content]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               features:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Project added
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Project'
+ */
 router.post('/projects', isAdmin, async (req, res) => {
   try {
     const { title, features } = req.body;
@@ -219,8 +439,22 @@ router.post('/projects', isAdmin, async (req, res) => {
 });
 
 
-// Reviews Content Routes
-// Get all reviews
+/**
+ * @swagger
+ * /api/content/reviews:
+ *   get:
+ *     summary: Retrieve all reviews
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: List of reviews
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Review'
+ */
 router.get('/reviews', async (req, res) => {
   try {
   const content = await reviewContent.find();
@@ -231,7 +465,28 @@ router.get('/reviews', async (req, res) => {
   }
 });
 
-// Delete a review (admin only)
+/**
+ * @swagger
+ * /api/content/reviews/{id}:
+ *   delete:
+ *     summary: Delete a review (admin only)
+ *     tags: [Content]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Review deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Review'
+ */
 router.delete('/reviews/:id', isAdmin, async (req, res) => {
   try {
     const deletedReview = await reviewContent.findByIdAndDelete(req.params.id);
@@ -246,7 +501,35 @@ router.delete('/reviews/:id', isAdmin, async (req, res) => {
   }
 });
 
-// Add a new review
+/**
+ * @swagger
+ * /api/content/reviews:
+ *   post:
+ *     summary: Submit a new review
+ *     tags: [Content]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               text:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Review created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Review'
+ */
 router.post('/reviews', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Email is required'),
@@ -269,8 +552,22 @@ router.post('/reviews', [
 }
 });
 
-// Contact Content Routes
-// Get all contact messages (admin only)
+/**
+ * @swagger
+ * /api/content/contact:
+ *   get:
+ *     summary: Get all contact messages (admin only)
+ *     tags: [Content]
+ *     responses:
+ *       200:
+ *         description: List of contact messages
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Contact'
+ */
 router.get('/contact', isAdmin, async (req, res) => {
   try {
   const content = await contactContent.find();
@@ -281,7 +578,35 @@ router.get('/contact', isAdmin, async (req, res) => {
   }
 });
 
-// Post a new contact message
+/**
+ * @swagger
+ * /api/content/contact:
+ *   post:
+ *     summary: Submit a new contact message
+ *     tags: [Content]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               message:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Contact message submitted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Contact'
+ */
 router.post('/contact', [
   body('name').trim().notEmpty().withMessage('Name is required'),
   body('email').isEmail().withMessage('Email is required'),
@@ -303,7 +628,28 @@ router.post('/contact', [
 };
 });
 
-// Delete a contact message (admin only)
+/**
+ * @swagger
+ * /api/content/contact/{id}:
+ *   delete:
+ *     summary: Delete a contact message (admin only)
+ *     tags: [Content]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Contact message deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Contact'
+ */
 router.delete('/contact/:id', isAdmin, async (req, res) => {
   try {
     const deletedContact = await contactContent.findByIdAndDelete(req.params.id);

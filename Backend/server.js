@@ -1,3 +1,79 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     HomeContent:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         heading:
+ *           type: string
+ *         text:
+ *           type: string
+ *           
+ *
+ *     Skill:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *         icon:
+ *           type: string
+ *         description:
+ *           type: string
+ *            
+ *     AboutContent:
+ *       type: object
+ *       properties:
+ *         heading:
+ *           type: string
+ *         text:
+ *           type: string
+ *         image:
+ *           type: string
+ *         skills:
+ *           type: array
+ *           items:
+ *             type: string
+ *
+ *     Project:
+ *       type: object
+ *       properties:
+ *         title:
+ *           type: string
+ *         features:
+ *           type: array
+ *           items:
+ *             type: string
+ *
+ *     Review:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         email:
+ *           type: string
+ *         text:
+ *           type: string
+ *         date:
+ *           type: string
+ *           format: date-time
+ *
+ *     Contact:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         email:
+ *           type: string
+ *         message:
+ *           type: string
+ *         date:
+ *           type: string
+ *           format: date-time
+ */
+
 const dotenv = require('dotenv');
 dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
 
@@ -9,6 +85,33 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const debug = require('debug')('app:error');
+
+// Swagger setup
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'My Backend API',
+      version: '1.0.0',
+      description: 'API documentation using Swagger',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Development server',
+      },
+    ],
+  },
+  apis: ['./routes/*.js', './server.js'], 
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
 
 // This allows the frontend to communicate with the backend
 app.use(cors({
