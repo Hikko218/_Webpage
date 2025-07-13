@@ -1,5 +1,6 @@
 const request = require('supertest');
 const { app, mongoose } = require('../server'); 
+const AboutContent = require('../models/aboutSchema');
 
 //Skip isAdmin check
 jest.mock('../middleware/isAdmin', () => (req, res, next) => next());
@@ -7,8 +8,16 @@ jest.mock('../middleware/isAdmin', () => (req, res, next) => next());
 //Start server
 let server;
 
-beforeAll(() => {
-  server = app.listen(0);              
+beforeAll( async () => {
+  server = app.listen(0); 
+  
+  const existing = await AboutContent.findOne();
+   if (!existing) {
+     await AboutContent.create({
+       heading: 'test1',
+       text: 'test1'
+     });
+  } 
 });
 
 //close server
