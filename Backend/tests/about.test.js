@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { app, server, mongoose } = require('../server'); 
+const { app, mongoose } = require('../server'); 
 
 //Skip isAdmin check
 jest.mock('../middleware/isAdmin', () => (req, res, next) => next());
