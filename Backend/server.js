@@ -35,7 +35,7 @@ app.use(session({
 // MongoDB connection
 const mongoURI = isTestEnv ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(mongoURI)
   .then(() => console.log('✅ MongoDB connected successfully'))
   .catch(err => console.error('❌ MongoDB error:', err));
 
