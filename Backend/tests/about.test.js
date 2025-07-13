@@ -8,22 +8,24 @@ jest.mock('../middleware/isAdmin', () => (req, res, next) => next());
 //Start server
 let server;
 
-beforeAll( async () => {
-  server = app.listen(0); 
-  
-  const existing = await AboutContent.findOne();
-   if (!existing) {
-     await AboutContent.create({
-       heading: 'test1',
-       text: 'test1'
-     });
-  } 
-});
+beforeAll(async () => {
+  // 1) Start sever
+  server = app.listen(0);
 
-//close server
-afterAll(async () => {
-  await mongoose.connection.close();   
-  await server.close();                
+  // 2) Wait for MongoDB
+  if (mongoose.connection.readyState === 0) {
+    await new Promise(resolve =>
+      mongoose.connection.once('open', resolve)
+    );
+  }
+
+  // 3) Clean database
+  await AboutContent.deleteMany();
+  await AboutContent.create({
+    heading: 'Test Heading',
+    text:    'Test Text',
+    skills:  []
+  });
 });
 
 //Test get about
@@ -61,5 +63,11 @@ describe('PUT /api/content/about/', () => {
         expect(res.statusCode).toBe(200);
         expect(res.body).toBeDefined();
     });
+});
+
+//close server
+afterAll(async () => {
+  await mongoose.connection.close();   
+  await server.close();                
 });
 
