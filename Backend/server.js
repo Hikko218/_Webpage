@@ -1,6 +1,10 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
+
+const isTestEnv = process.env.NODE_ENV === 'test';
+
 const express = require('express');
 const app = express();
-require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
@@ -29,7 +33,9 @@ app.use(session({
 }));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+const mongoURI = isTestEnv ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+
+mongoose.connect(mongoURI)
   .then(() => console.log('✅ MongoDB connected successfully'))
   .catch(err => console.error('❌ MongoDB error:', err));
 
@@ -65,8 +71,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start the server
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`🚀 Server runs ${process.env.PORT || 3000}`);
-});
+// Start the server only if this file is executed directly
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`🚀 Server runs at ${PORT}`));
+}
+// Export for testing
+module.exports = {app, mongoose};
 

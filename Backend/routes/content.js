@@ -23,7 +23,7 @@ router.get('/home', async (req, res) => {
   try {
     const content = await homeContent.find();
     debug('GET /home – found %d item(s)', content.length);
-    res.json(content);
+    res.status(200).json(content);
   } catch (err) {
     debug('GET /home error: %O', err);
     res.status(500).json({ message: 'DB error' });
@@ -35,7 +35,7 @@ router.put('/home', isAdmin, async (req, res) => {
   try {
     const updated = await homeContent.findByIdAndUpdate('home', req.body, { new: true });
     debug('PUT /home – updated');
-    res.json(updated);
+    res.status(200).json(updated);
   } catch (err) {
     debug('PUT /home error: %O', err);
     res.status(500).json({ message: 'Update error' });
@@ -48,7 +48,7 @@ router.get('/about', async (req, res) => {
   try {
     const content = await aboutContent.find();
     debug('GET /about – %d item(s)', content.length);
-    res.json(content);
+    res.status(200).json(content);
   } catch (err) {
     debug('GET /about error: %O', err);
     res.status(500).json({ message: 'DB error' });
@@ -68,7 +68,7 @@ router.put('/about', isAdmin, async (req, res) => {
     about.text = req.body.text;
 
     const updated = await about.save(); 
-    res.json(updated);
+    res.status(200).json(updated);
     
   } catch (err) {
     debug('Error updating about content:', err);
@@ -97,7 +97,7 @@ router.post('/about/skills', isAdmin, upload.single('icon'), async (req, res) =>
 
     await content.save();
 
-    res.json({ message: 'Skill added', skill: content.skills.at(-1) });
+    res.status(201).json({ message: 'Skill added', skill: content.skills.at(-1) });
   } catch (err) {
     debug('Error adding skill:', err);
     res.status(500).json({ message: 'Upload failed', error: err.message });
@@ -134,7 +134,7 @@ router.delete('/about/skills/:id', isAdmin, async (req, res) => {
     content.skills.splice(skillIndex, 1);
     await content.save();
 
-    res.json({ message: 'Skill deleted successfully', skills: content.skills });
+    res.status(200).json({ message: 'Skill deleted successfully', skills: content.skills });
     } catch (err) {
     debug('Error deleting skill:', err);
     res.status(500).json({ message: 'Error deleting skill', error: err.message });
@@ -158,7 +158,7 @@ router.put('/about/skills/:id', isAdmin, async (req, res) => {
     skill.title = title;
     skill.description = description;
     await content.save();
-    res.json({ message: 'Skill updated successfully', skill });
+    res.status(200).json({ message: 'Skill updated successfully', skill });
   } catch (err) {
     debug('Error updating skill:', err);
     res.status(500).json({ message: 'Error updating skill', error: err.message
@@ -171,7 +171,7 @@ router.put('/about/skills/:id', isAdmin, async (req, res) => {
 router.get('/projects', async (req, res) => {
   try {
   const content = await projectContent.find();
-  res.json(content);
+  res.status(200).json(content);
   } catch (err) {
     debug('GET /projects error: %O', err);
     res.status(500).json({ message: 'DB error' });
@@ -182,7 +182,7 @@ router.get('/projects', async (req, res) => {
 router.put('/projects/:id', isAdmin, async (req, res) => {
   try {
   const updated = await projectContent.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
+  res.status(200).json(updated);
   } catch (err) {
     debug('PUT /projects error: %O', err);
     res.status(500).json({ message: 'Update error' });
@@ -197,7 +197,7 @@ router.delete('/projects/:id', isAdmin, async (req, res) => {
       debug('Project not found:', req.params.id);
       return res.status(404).json({ message: 'Project not found' });
     }
-    res.json({ message: 'Project deleted successfully', project: deletedProject });
+    res.status(200).json({ message: 'Project deleted successfully', project: deletedProject });
   } catch (err) {
     debug('Error deleting project:', err);
     res.status(500).json({ message: 'Error deleting project', error: err.message });
@@ -224,7 +224,7 @@ router.post('/projects', isAdmin, async (req, res) => {
 router.get('/reviews', async (req, res) => {
   try {
   const content = await reviewContent.find();
-  res.json(content);
+  res.status(200).json(content);
   } catch (err) {
     debug('GET /reviews error: %O', err);
     res.status(500).json({ message: 'DB error' });
@@ -239,7 +239,7 @@ router.delete('/reviews/:id', isAdmin, async (req, res) => {
       debug('Review not found:', req.params.id);
       return res.status(404).json({ message: 'Review not found' });
     }
-    res.json({ message: 'Review deleted successfully', review: deletedReview });
+    res.status(200).json({ message: 'Review deleted successfully', review: deletedReview });
   } catch (err) {
     debug('Error deleting review:', err);
     res.status(500).json({ message: 'Error deleting review', error: err.message });
@@ -274,7 +274,7 @@ router.post('/reviews', [
 router.get('/contact', isAdmin, async (req, res) => {
   try {
   const content = await contactContent.find();
-  res.json(content);
+  res.status(200).json(content);
   } catch (err) {
     debug('GET /contact error: %O', err);
     res.status(500).json({ message: 'DB error' });
@@ -310,7 +310,7 @@ router.delete('/contact/:id', isAdmin, async (req, res) => {
     if (!deletedContact) {
       return res.status(404).json({ message: 'Contact message not found' });
     }
-    res.json({ message: 'Contact message deleted successfully', contact: deletedContact });
+    res.status(200).json({ message: 'Contact message deleted successfully', contact: deletedContact });
   } catch (err) {
     debug('Error deleting contact message:', err);
     res.status(500).json({ message: 'Error deleting contact message', error: err.message });
