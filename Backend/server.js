@@ -66,12 +66,10 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server only if this file is executed directly
-let server;
-
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => console.log(`🚀 Server läuft auf ${PORT}`));
+  app.listen(PORT, () => console.log(`🚀 Server runs at ${PORT}`));
 }
 // Export for testing
-module.exports = {app, server, mongoose};
+module.exports = {app, mongoose};
 
