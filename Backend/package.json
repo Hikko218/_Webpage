@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --runInBand --coverage",
-    "test:watch": "jest --watch",
+    "test": "cross-env NODE_ENV=test jest --runInBand --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
     "start": "node server.js",
     "dev": "cross-env DEBUG=* nodemon server.js",
     "lint": "eslint . --max-warnings 0",

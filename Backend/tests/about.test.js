@@ -11,21 +11,6 @@ let server;
 beforeAll(async () => {
   // 1) Start sever
   server = app.listen(0);
-
-  // 2) Wait for MongoDB
-  if (mongoose.connection.readyState === 0) {
-    await new Promise(resolve =>
-      mongoose.connection.once('open', resolve)
-    );
-  }
-
-  // 3) Clean database
-  await AboutContent.deleteMany();
-  await AboutContent.create({
-    heading: 'Test Heading',
-    text:    'Test Text',
-    skills:  []
-  });
 });
 
 //Test get about
@@ -33,6 +18,8 @@ describe('GET /api/content/about', () => {
   it('should return about content', async () => {
     const res = await request(app).get('/api/content/about');
     
+    console.log('RESPONSE BODY:', res.body);
+
     expect(res.statusCode).toBe(200);
     expect(res.body).toBeDefined();
     expect(Array.isArray(res.body)).toBe(true);
