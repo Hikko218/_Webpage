@@ -87,6 +87,7 @@ const session = require('express-session');
 const debug = require('debug')('app:error');
 
 // Swagger setup
+if (!isTestEnv) {
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -110,7 +111,7 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+}
 
 
 // This allows the frontend to communicate with the backend
