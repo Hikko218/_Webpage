@@ -30,7 +30,7 @@ app.use(session({
 
 // MongoDB string test or production
 const isTestEnv = process.env.NODE_ENV === 'test';
-const mongoURI = isTestEnv ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+const mongoURI = isTestEnv ? process.env.test.MONGO_URI_TEST : process.env.MONGO_URI;
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI)
