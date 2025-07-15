@@ -12,7 +12,7 @@ async function changeHomeContent(event) {
 
     if (heading && text) {
       try {
-        const response = await fetch("http://localhost:3000/api/content/home", {
+        const response = await fetch("https://webpage-5mmz.onrender.com/api/content/home", {
             method: "PUT",
             credentials: "include",
             headers: {
@@ -46,7 +46,7 @@ async function deleteReview(event) {
   if (event.target.classList.contains("delete-review-btn")) {
     const reviewId = event.target.dataset.reviewId;
     try {
-      const response = await fetch(`http://localhost:3000/api/content/reviews/${reviewId}`, {
+      const response = await fetch(`https://webpage-5mmz.onrender.com/api/content/reviews/${reviewId}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -86,7 +86,7 @@ document.addEventListener('click', async (e) => {
     const confirmed = confirm("Projekt wirklich löschen?");
     if (!confirmed) return;
 
-    const res = await fetch(`http://localhost:3000/api/content/projects/${id}`, { 
+    const res = await fetch(`https://webpage-5mmz.onrender.com/api/content/projects/${id}`, { 
       method: 'DELETE', 
       credentials: 'include',
     });
@@ -107,7 +107,7 @@ document.addEventListener('click', async (e) => {
 
   const newFeatures = newFeaturesRaw.split(',,').map(f => f.trim()).filter(Boolean);
 
-  const res = await fetch(`http://localhost:3000/api/content/projects/${id}`, {
+  const res = await fetch(`https://webpage-5mmz.onrender.com/api/content/projects/${id}`, {
     method: 'PUT',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -137,7 +137,7 @@ document.addEventListener('click', async (e) => {
 
   const newFeatures = newFeaturesRaw.split(',,').map(f => f.trim()).filter(Boolean);
 
-  const res = await fetch("http://localhost:3000/api/content/projects", {
+  const res = await fetch("https://webpage-5mmz.onrender.com/api/content/projects", {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -164,7 +164,7 @@ document.addEventListener('click', async (e) => {
     const newText = prompt("New About Text:");
     if (newText === null) return; 
 
-    const res = await fetch('http://localhost:3000/api/content/about', {
+    const res = await fetch('https://webpage-5mmz.onrender.com/api/content/about', {
       method: 'PUT',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -187,7 +187,7 @@ document.addEventListener('click', async (e) => {
     const confirmed = confirm("Skill delete?");
     if (!confirmed) return;
 
-    const res = await fetch(`http://localhost:3000/api/content/about/skills/${skillId}`, {
+    const res = await fetch(`https://webpage-5mmz.onrender.com/api/content/about/skills/${skillId}`, {
       method: 'DELETE',
       credentials: 'include',
     });
@@ -208,7 +208,7 @@ document.addEventListener('click', async (e) => {
     const newDescription = prompt("New Skill Description:");
     if (newDescription === null) return; 
 
-    const res = await fetch(`http://localhost:3000/api/content/about/skills/${skillId}`, {
+    const res = await fetch(`https://webpage-5mmz.onrender.com/api/content/about/skills/${skillId}`, {
       method: 'PUT',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -222,7 +222,7 @@ document.addEventListener('click', async (e) => {
       // Update the skill in the DOM
       skillDiv.querySelector('h3').textContent = newTitle;
       skillDiv.querySelector('p').textContent = newDescription;
-      skillDiv.querySelector('img').src = `http://localhost:3000${newIconPath}`;
+      skillDiv.querySelector('img').src = `https://webpage-5mmz.onrender.com${newIconPath}`;
       console.log("Skill updated successfully");
     }
   }
@@ -248,7 +248,7 @@ document.getElementById("skill-add-btn").addEventListener('click', async (e) => 
 
   try {
     // Send the form data to the server
-    const res = await fetch('http://localhost:3000/api/content/about/skills', {
+    const res = await fetch('https://webpage-5mmz.onrender.com/api/content/about/skills', {
       method: 'POST',
       credentials: 'include',
       body: formData
@@ -275,7 +275,7 @@ document.addEventListener('click', async (e) => {
     const confirmed = confirm("Delete contact message?");
     if (!confirmed) return;
 
-    const res = await fetch(`http://localhost:3000/api/content/contact/${messageId}`, {
+    const res = await fetch(`https://webpage-5mmz.onrender.com/api/content/contact/${messageId}`, {
       method: 'DELETE',
       credentials: 'include',
     });

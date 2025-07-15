@@ -12,7 +12,7 @@ document
     const username = usernameInput.value;
     const password = passwordInput.value;
 
-    const res = await fetch("http://localhost:3000/api/admin/login", {
+    const res = await fetch("https://webpage-5mmz.onrender.com/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // Include cookies for session management
@@ -38,7 +38,7 @@ document
 // Logout function for admin
 document.addEventListener('click', async (e) => {
     if (e.target.matches('#logout-btn')) {
-  const res = await fetch("http://localhost:3000/api/admin/logout", {
+  const res = await fetch("https://webpage-5mmz.onrender.com/api/admin/logout", {
     method: "POST",
     credentials: "include", 
   });

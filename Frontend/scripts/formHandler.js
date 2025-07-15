@@ -75,7 +75,7 @@ async function message(event) {
     try {
       // Send POST request to save the message
       const response = await fetch(
-        "http://localhost:3000/api/content/contact",
+        "https://webpage-5mmz.onrender.com/api/content/contact",
         {
           method: "POST",
           headers: {

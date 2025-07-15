@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   showSection('home');
 
   try {
-    const res = await fetch('http://localhost:3000/api/admin/check', {
+    const res = await fetch('https://webpage-5mmz.onrender.com/api/admin/check', {
       credentials: 'include',
     });
 
@@ -42,7 +42,7 @@ async function showSection(sectionId) {
    // Load about-me content if the section is 'about-me'
   if (sectionId === 'about-me') {
     try {
-      const res = await fetch('http://localhost:3000/api/content/about', {
+      const res = await fetch('https://webpage-5mmz.onrender.com/api/content/about', {
       credentials: 'include'
       });
       const [about] = await res.json();
@@ -64,7 +64,7 @@ async function showSection(sectionId) {
         div.className = 'skill';
         div.dataset.id = skill._id; 
         div.innerHTML = `
-          <img src="http://localhost:3000${skill.icon}" alt="${skill.title}">
+          <img src="https://webpage-5mmz.onrender.com${skill.icon}" alt="${skill.title}">
           <h3>${skill.title}</h3>
           <p>${skill.description.split(',,').map(item => item.trim()).join('<br>')}</p>
           <div class="skills-button-group">
@@ -82,7 +82,7 @@ async function showSection(sectionId) {
   // Load reviews content if the section is 'reviews'
   if (sectionId === 'reviews') {
     try {
-      const res = await fetch('http://localhost:3000/api/content/reviews', {
+      const res = await fetch('https://webpage-5mmz.onrender.com/api/content/reviews', {
         credentials: 'include'
       });
       const reviews = await res.json();
@@ -111,7 +111,7 @@ async function showSection(sectionId) {
   // Load projects content if the section is 'projects'
   if (sectionId === 'projects') {
     try {
-      const res = await fetch('http://localhost:3000/api/content/projects', {
+      const res = await fetch('https://webpage-5mmz.onrender.com/api/content/projects', {
         credentials: 'include'
       });
       const projects = await res.json();
@@ -146,7 +146,7 @@ async function showSection(sectionId) {
   // Load home content if the section is 'home'
   if (sectionId === 'home') {
     try {
-      const res = await fetch('http://localhost:3000/api/content/home', {
+      const res = await fetch('https://webpage-5mmz.onrender.com/api/content/home', {
         credentials: 'include'
       });
       const [homeContent] = await res.json();
@@ -163,7 +163,7 @@ async function showSection(sectionId) {
   // Show Contact Messages for Admin
   if (sectionId === 'contact') {
   try {
-    const res = await fetch('http://localhost:3000/api/content/contact', {
+    const res = await fetch('https://webpage-5mmz.onrender.com/api/content/contact', {
       credentials: 'include'
     });
 
