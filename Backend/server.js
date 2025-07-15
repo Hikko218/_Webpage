@@ -113,11 +113,21 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }
 
+const allowedOrigins = [
+  'http://localhost:5500',
+  'https://hikko218.github.io/_Webpage'
+]
 
 // This allows the frontend to communicate with the backend
 app.use(cors({
-  origin: process.env.CLIENT_URL, 
-  credentials: true // allow credentials to be sent
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 // Middleware to parse JSON requests
