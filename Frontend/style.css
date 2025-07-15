@@ -799,6 +799,10 @@ body.admin .contact_inner_wrapper {display:none;}
     font-size: 0.95rem;
   }
 
+   main {
+    padding-top: 150px;
+  }
+
   header {
     flex-direction: column;
     align-items: center;
