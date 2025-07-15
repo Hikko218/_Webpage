@@ -116,7 +116,7 @@ SESSION_SECRET=yourStrongRandomSecretKeyHere
 CLIENT_URL=http://localhost:5500
 Port=3000 </code></pre>
 
-4. Run the server: `node index.js`  
+4. Run the server: `node server.js`  
 5. Open in browser: `http://localhost:3000`
 
 ---
