@@ -7,6 +7,17 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 
 ## 🚀 Features
 
+## 🌐 Live Deployment
+
+- 🔗 **Frontend**: [FrontendOnRender](https://webpage-1-8je9.onrender.com/)
+- 🔗 **Backend** (API): [BackendOnRender](https://webpage-5mmz.onrender.com)
+- 🔗 **Swagger API Docs**: [API Docs](https://webpage-5mmz.onrender.com/api-docs/)
+
+## 🎥 Demo
+
+-Watch the project walkthrough video here:  
+-[Demo Video](https://www.loom.com/share/daa253b0a7204864935d6510a621b044?sid=5689b276-e205-4852-9bb8-ec64ea5ca19a)
+
 ### 🖥️ Frontend
 - Fully responsive layout (HTML, CSS, Vanilla JS)
 - Dynamic section management (Home, About, Skills, Projects, Reviews, Contact)
@@ -43,7 +54,7 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 - **Security**: express-validator, express-rate-limiter
 - **Error Handling**: Debug
 - **File Upload**: Multer
-- **Tools**: Git, GitHub, Postman
+- **Tools**: Git, GitHub, Postman, Docker, Docker Compose
 - **Testing**: Jest, Supertest
 
 ---
@@ -51,12 +62,6 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 ## 📘 API Documentation (Swagger)
 
 This backend is fully documented using **Swagger (OpenAPI 3.0)**. You can explore, test, and understand the API via a web-based interface.
-
-### 🔗 Access the Swagger UI
-
-After starting the server, open your browser and go to:
-
-http://localhost:3000/api-docs
 
 ---
 
@@ -118,13 +123,6 @@ Port=3000 </code></pre>
 
 4. Run the server: `node server.js`  
 5. Open in browser: `http://localhost:3000`
-
----
-
-## 🎥 Demo
-
-Watch the project walkthrough video here:  
-[Demo Video](https://www.loom.com/share/daa253b0a7204864935d6510a621b044?sid=5689b276-e205-4852-9bb8-ec64ea5ca19a)
 
 ---
 
