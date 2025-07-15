@@ -30,7 +30,7 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 - File uploads with Multer (e.g., skill icons)
 - Environment-based admin credential management
 - Error handling with debug
-- Testing with jest/supertest
+- Testing at push/merge with jest/supertest
 
 ---
 
@@ -45,6 +45,18 @@ It includes a public-facing portfolio and a password-protected admin area for ed
 - **File Upload**: Multer
 - **Tools**: Git, GitHub, Postman
 - **Testing**: Jest, Supertest
+
+---
+
+## 📘 API Documentation (Swagger)
+
+This backend is fully documented using **Swagger (OpenAPI 3.0)**. You can explore, test, and understand the API via a web-based interface.
+
+### 🔗 Access the Swagger UI
+
+After starting the server, open your browser and go to:
+
+http://localhost:3000/api-docs
 
 ---
 
@@ -96,15 +108,15 @@ WEBPAGE/
 2. Install dependencies: `npm install`  
 3. Create `.env` with:
 
-ADMIN_USER=yourAdminUsername
+<pre><code>ADMIN_USER=yourAdminUsername
 ADMIN_PASS=yourHashedPassword  # Use bcrypt to hash
 MONGODB_URI=yourMongoDbConnectionString
 SECRET_KEY=yourStrongRandomSecretKeyHere
 SESSION_SECRET=yourStrongRandomSecretKeyHere
 CLIENT_URL=http://localhost:5500
-Port=3000
+Port=3000 </code></pre>
 
-4. Run the server: `node index.js`  
+4. Run the server: `node server.js`  
 5. Open in browser: `http://localhost:3000`
 
 ---
