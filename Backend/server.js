@@ -115,7 +115,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const allowedOrigins = [
   'http://localhost:5500',
-  'https://hikko218.github.io/_Webpage'
+  'https://webpage-1-8je9.onrender.com'
 ]
 
 // This allows the frontend to communicate with the backend
